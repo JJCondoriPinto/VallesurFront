@@ -512,14 +512,9 @@ input {
     }
 }
 .tableView .sort-button {
-    padding: 0;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: var(--app-content-main-color);
-    margin-left: 4px;
-    display: flex;
-    align-items: center;
+
+    color: white;
+
 }
 .tableView .sort-button:hover {
     color: var(--action-color);
@@ -688,6 +683,7 @@ input {
     display: flex;
     border-radius: 4px;
     box-shadow: 0 4px 10px 4px var(--app-bg);
+
 }
 .form {
     background: var(--app-content-secondary-color);
@@ -763,6 +759,7 @@ input {
         flex-direction: row;
         column-gap: 2rem;
         justify-content: space-around;
+ 
     }
 }
 .form .card-header p,

@@ -1,4 +1,7 @@
 import HomeGerenteView from "@/views/gerente/HomeGerenteView.vue";
+import HuespedesGerenteView from "@/views/gerente/huespedes/HuespGerentView.vue";
+import HuespedesGerenteShow from "@/views/gerente/huespedes/HuespGerentShow.vue";
+import HuespedesGerenteEdit from "@/views/gerente/huespedes/HuespGerentEdit.vue";
 
 const routes_gerente = [
   {
@@ -9,6 +12,17 @@ const routes_gerente = [
   {
     path: "huespedes",
     name: "gerente-huespedes",
+    component: HuespedesGerenteView,
+  },
+  {
+    path: "huespedes-show/:id",
+    name: "gerente-huespedes-show",
+    component: HuespedesGerenteShow,
+  },
+  {
+    path: "huespedes-edit/:id",
+    name: "gerente-huespedes-edit",
+    component: HuespedesGerenteEdit,
   },
   {
     path: "habitaciones",
