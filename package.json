@@ -18,12 +18,16 @@
     "datatables.net-bs5": "^1.13.4",
     "datatables.net-buttons-bs5": "^2.3.6",
     "datatables.net-responsive-bs5": "^2.4.1",
+    "datatables.net-select": "^1.6.2",
     "datatables.net-vue3": "^2.1.1",
+    "instascan": "^1.0.0",
     "jszip": "^3.10.1",
     "pdfmake": "^0.2.7",
     "register-service-worker": "^1.7.2",
     "vue": "^3.2.13",
+    "vue-media-recorder": "^0.1.25",
     "vue-router": "^4.0.3",
+    "vue-web-cam": "^1.9.0",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
@@ -41,7 +45,10 @@
     "babel-jest": "^27.0.6",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
-    "jest": "^27.0.5"
+    "jest": "^27.0.5",
+    "sass": "^1.63.6",
+    "sass-loader": "^13.3.2",
+    "webpack": "^5.88.1"
   },
   "eslintConfig": {
     "root": true,
