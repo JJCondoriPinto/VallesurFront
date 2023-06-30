@@ -13,6 +13,7 @@
               </template>
             </HeaderComponent>
             <BotonesCheck></BotonesCheck>
+            <AdminCheckoutTable></AdminCheckoutTable>
           </div>
         </div>
       </div>
@@ -24,6 +25,7 @@ import SidebarComponent from "@/components/SidebarComponent.vue";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import ListSidebarRecepcionista from "@/components/ListSidebarRecepcionista.vue";
 import BotonesCheck from "@/components/BotonesCheck.vue";
+import AdminCheckoutTable from "@/components/AdminCheckoutTable.vue"
 
 export default {
     name: "CheckOut",
@@ -31,7 +33,8 @@ export default {
       SidebarComponent,
       ListSidebarRecepcionista,
       HeaderComponent,
-      BotonesCheck
+      BotonesCheck,
+      AdminCheckoutTable
     },
     data() {
       return {

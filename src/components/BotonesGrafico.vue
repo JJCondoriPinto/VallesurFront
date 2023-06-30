@@ -41,6 +41,7 @@
       <router-link :to="{ name: 'recepcionista-reportes-personas' }">
         <button type="button" :class="{ 'third custom-font-size' : true, 'activo': isRouteActive('recepcionista-reportes-personas') }">
           <span class="tamano">PERSONAS</span>
+          <svg-icon type="mdi" :path="path3" id="icono"></svg-icon>
         </button>
       </router-link>
     </div>

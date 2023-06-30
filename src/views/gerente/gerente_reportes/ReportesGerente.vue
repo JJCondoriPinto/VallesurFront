@@ -22,10 +22,13 @@
   
                 DASHBOARD: REPORTES OPERATIVOS
               </template>
+            
             </HeaderComponent>
-            <BotonesGrafico></BotonesGrafico>
+            <!-- <BotonesGrafico></BotonesGrafico> -->
             <GraficoBarras></GraficoBarras>
             <GraficoLinear></GraficoLinear>
+           
+            
           </div>
         </div>
       </div>
@@ -37,7 +40,7 @@
   import SidebarComponent from "@/components/SidebarComponent.vue";
   import HeaderComponent from "@/components/HeaderComponent.vue";
   import ListSidebarRecepcionista from "@/components/ListSidebarRecepcionista.vue";
-  import BotonesGrafico from "@/components/BotonesGrafico.vue";
+  /* import BotonesGrafico from "@/components/BotonesGrafico.vue"; */
   import GraficoBarras from "@/components/GraficoBarras";
   import GraficoLinear from "@/components/GraficoLinear";
 
@@ -50,7 +53,7 @@
       HeaderComponent,
       GraficoBarras,
       GraficoLinear,
-      BotonesGrafico,
+      /* BotonesGrafico, */
     },
     data() {
       return {
@@ -61,8 +64,6 @@
   </script>
   
   <style>
-
-  
 
 
   </style>

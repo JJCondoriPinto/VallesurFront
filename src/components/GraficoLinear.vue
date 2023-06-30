@@ -1,5 +1,5 @@
 <template>
-  <div id="graficolinear">
+  <div class="graficolinear">
     <canvas id="myChart2" width="750" height="500"></canvas>
   </div>
 </template>
@@ -62,9 +62,22 @@ export default {
 </script>
 
 <style>
-#graficolinear {
-  position: absolute;
-  top: 250px;
-  left: 1000px;
+ .graficolinear {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  width: 100%;
+  padding: 20px;
+  padding-top: 0;
+  margin-top: 10em;
 }
+
+#myChart2{
+    background: #1a2740;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    width: 100%;
+}
+
 </style>
