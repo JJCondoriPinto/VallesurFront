@@ -13,11 +13,27 @@
                         </div>
                         <div class="card-group form-group">
                             <label>Razon Hospedaje</label>
-                            <select class="form-input" v-model=formData.razon_hospedaje required>
+                            <select class="form-input" v-model=formData.razon_hospedaje @change="funcionEmpresa" required>
                                 <option value="Trabajo">Trabajo</option>
                                 <option value="Otro">Otro</option>
                             </select>
                         </div>
+
+                        <div v-if="formData.razon_hospedaje === 'Trabajo'">
+                            <div class="card-group form-group">
+                                <label>RUC de la empresa</label>
+                                <input class="form-input" type="text" v-model="formData.ruc_empresa" required>
+                            </div>
+                            <div class="card-group form-group">
+                                <label>Razón social</label>
+                                <input class="form-input" type="text" v-model="formData.razon_social" required>
+                            </div>
+                            <div class="card-group form-group">
+                                <label>Dirección de la empresa</label>
+                                <input class="form-input" type="text" v-model="formData.direccion_empresa" required>
+                            </div>
+                        </div>
+
                         <div class="card-group form-group">
                             <label>Destinatario Reserva</label>
                             <select class="form-input" v-model=formData.destinatario_reserva required>
@@ -186,7 +202,10 @@ export default {
                 destinatario_reserva: '',
                 hora_llegada: '',
                 fecha_checkin: '',
-                fecha_checkout: ''
+                fecha_checkout: '',
+                ruc_empresa:'',
+                razon_social:'',
+                direccion_empresa:''
             }
         }
     },
@@ -265,9 +284,17 @@ export default {
                 // Si el campo de check-in está vacío, se permite seleccionar cualquier fecha
                 return '';
             }
+        },
+
+        funcionEmpresa () {
+            if (this.formData.razon_hospedaje === 'Otro') {
+                    this.formData.ruc_empresa = '';
+                    this.formData.razon_social = '';
+                    this.formData.direccion_empresa = '';
+                }
+            }
         }
     }
-}
 </script>
 <style scoped>
 @import url('@/css/app.css');
