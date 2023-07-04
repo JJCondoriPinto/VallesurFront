@@ -22,6 +22,7 @@
                             <th>Tipo Habitación</th>
                             <th>Fecha Llegada</th>
                             <th>Canal</th>
+                            <th>Empresa</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
@@ -90,6 +91,11 @@ export default {
                     }
                 },
                 { data: 'datosReserva.tipo_reserva' },
+                { data: 'empresa',render:
+                    function(data){
+                        return data.razon_social==null?'No Aplicó':data.razon_social;
+                    }
+                }, 
                 { data: 'estado' },
                 {
                     data: null, render: function () {

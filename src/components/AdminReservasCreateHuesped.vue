@@ -76,6 +76,7 @@
                 </form>
             </div>
         </div>
+        <!-- <div v-if="alerta" v-html="alerta"></div> -->
     </div>
 </template>
 <script>
@@ -84,6 +85,7 @@ import axios from 'axios';
 export default {
     data() {
         return {
+            alerta: null,
             formData: {
                 nombre_huesped: '',
                 apellido_huesped: '',
@@ -116,7 +118,23 @@ export default {
             const day = String(date.getDate()).padStart(2, '0');
             this.formData.fecha_nacimiento_huesped = `${year}-${month}-${day}`;
         }
-    }
+    //     mostrarAlerta(mensaje, icono) {
+    //         const alertHTML = `
+    //             <div class="alert alert-${icono.includes('info-fill') ? 'primary' : 'success'} d-flex align-items-center" role="alert">
+    //             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Icono">
+    //                 <use xlink:href="#${icono}"/>
+    //             </svg>
+    //             <div>${mensaje}</div>
+    //             </div>
+    //         `;
+    //         this.alerta = alertHTML;
+    //     },
+    // },
+    // mounted() {
+    //     // Escuchar el evento emitido por el otro componente
+    //     this.$root.$on('mostrar-alerta', this.mostrarAlerta);
+    // },
+}
 }
 </script>
 <style>

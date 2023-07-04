@@ -36,19 +36,25 @@ import axios from 'axios';
             };
         },
         methods:{
-            comprobarExistencia(){
-                axios.get('/api/huesped',{
-                    params:this.formData
-                }).then((value)=>{
-                    console.log(value);
-                    this.$router.push({name:'reservas-create',params: { id: value.data.data._id }})
-                }).catch((error)=>{
-                    console.log(error);
-                    this.$router.push({name:'reservas-create-huesped'})
-                })
-            }
-        }
+        comprobarExistencia() {
+            axios.get('/api/huesped', {
+                params: this.formData
+            })
+            .then((value) => {
+                console.log(value);
+                this.$emit('mostrar-alerta', 'An example success alert with an icon', 'check-circle-fill');
+                this.$router.push({ name:'reservas-create', params: { id: value.data.data._id } });
+            })
+            .catch((error) => {
+                console.log(error);
+                this.$emit('mostrar-alerta', 'An example alert with an icon', 'info-fill');
+                this.$router.push({ name:'reservas-create-huesped' });
+            });
+        },
     }
+
+}
+
 </script>
 <style>
 option {
