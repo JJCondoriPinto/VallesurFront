@@ -3,7 +3,7 @@
       <div class="body-app">
         <div class="app-container">
           <SidebarComponent>
-            <ListSidebarGerente />
+            <ListSidebarRecepcionista />
           </SidebarComponent>
   
           <div class="app-content">
@@ -24,7 +24,7 @@
               </template>
             </HeaderComponent>
 
-            <BotonesGraficoGerente></BotonesGraficoGerente>
+            <BotonesGrafico></BotonesGrafico>
             <div class="col-md-12 w-100 parent-canvas">
               <GraficoCircular></GraficoCircular>
               <GraficoBarras2></GraficoBarras2>
@@ -40,9 +40,9 @@
   
   import SidebarComponent from "@/components/SidebarComponent.vue";
   import HeaderComponent from "@/components/HeaderComponent.vue";
-  import ListSidebarGerente from "@/components/ListSidebarGerente.vue";
+  import ListSidebarRecepcionista from "@/components/ListSidebarRecepcionista.vue";
   import GraficoBarras2 from "@/components/GraficoBarras2";
-  import BotonesGraficoGerente from "@/components/BotonesGraficoGerente";
+  import BotonesGrafico from "@/components/BotonesGrafico";
   import GraficoCircular from "@/components/GraficoCircular.vue";
 
   export default {
@@ -50,10 +50,10 @@
     name2: "BarChart",
     components: {
       SidebarComponent,
-      ListSidebarGerente,
+      ListSidebarRecepcionista,
       HeaderComponent,
       GraficoBarras2,
-      BotonesGraficoGerente,
+      BotonesGrafico,
       GraficoCircular
     },
     data() {

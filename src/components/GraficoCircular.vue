@@ -1,6 +1,6 @@
 <template>
     <div id="graficocircular">
-     <canvas id="myChart4" width="550" height="500"></canvas>
+     <canvas id="myChart4" width="600" height="450"></canvas>
     </div>
  </template>
  
@@ -79,10 +79,22 @@
  
  <style>
  
- #graficocircular{
-     position: absolute;
-     top: 250px;
-     left: 1150px;
- }
- 
+ .graficocircular {
+  display: flex;
+  justify-content: center;
+  grid-gap: 20px;
+  width: auto;
+  padding: 20px;
+  padding-top: 0;
+  /*margin-top: 10em;*/
+}
+
+#myChart4 {
+    background: #1a2740;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    width: 100%;
+
+}
  </style>

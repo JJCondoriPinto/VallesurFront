@@ -1,7 +1,7 @@
 <template>        
     <div class="html">
         <div class="body-app">
-            <div class="app-container">
+            <div class="app-container" style="height: 700px;">
                 <SidebarComponent>
                     <ListSidebarGerente />
                 </SidebarComponent>

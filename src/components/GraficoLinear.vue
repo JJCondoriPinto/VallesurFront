@@ -1,6 +1,6 @@
 <template>
   <div class="graficolinear">
-    <canvas id="myChart2" width="750" height="500"></canvas>
+    <canvas id="myChart2" width="600" height="450"></canvas>
   </div>
 </template>
 
@@ -63,13 +63,12 @@ export default {
 
 <style>
  .graficolinear {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  width: auto;
   padding: 20px;
   padding-top: 0;
-  margin-top: 10em;
+  
 }
 
 #myChart2{

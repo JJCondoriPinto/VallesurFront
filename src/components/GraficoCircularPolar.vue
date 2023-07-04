@@ -1,6 +1,6 @@
 <template>
     <div id="graficocircularpolar">
-      <canvas id="myChart3" width="750" height="500"></canvas>
+      <canvas id="myChart3" width="600" height="450"></canvas>
     </div>
   </template>
   
@@ -78,10 +78,24 @@
   </script>
   
   <style>
-  #graficocircularpolar {
-    position: absolute;
-     top: 250px;
-     left: 350px;
-  }
+
+.graficocircularpolar {
+  display: flex;
+  justify-content: center;
+  grid-gap: 20px;
+  width: auto;
+  padding: 20px;
+  padding-top: 0;
+  margin-top: 10em;
+}
+
+#myChart3 {
+    background: #1a2740;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    width: 100%;
+
+}
   </style>
   

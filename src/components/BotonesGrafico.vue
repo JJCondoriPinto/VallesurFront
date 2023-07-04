@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="col-md-12 w-100 buttom-parent">
     <div>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -76,7 +76,12 @@ export default {
 </script>
 
 <style>
-
+.buttom-parent {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 ;
+  column-gap: 1rem;
+}
 .first {
 /*     border-color: #1a2740;
     color: #fff;
@@ -91,9 +96,8 @@ export default {
     font-family: "Mochiy Pop P One", sans-serif;
     text-align: left;
     /*-webkit-text-stroke: 1px black;*/ /*Le da borde a las letras */
-    position: absolute;
-    top: 100px;
-    left: 340px;
+    
+    
   }
 
   .second {
@@ -110,9 +114,6 @@ export default {
     font-family: "Mochiy Pop P One", sans-serif;
     text-align: left;
     /*-webkit-text-stroke: 1px black;*/ /*Le da borde a las letras */
-    position: absolute;
-    top: 100px;
-    left: 685px;
   }
   
   .third {
@@ -128,9 +129,6 @@ export default {
     height: 100px;
     font-family: "Mochiy Pop P One", sans-serif;
     /*-webkit-text-stroke: 1px black;*/ /*Le da borde a las letras */
-    position: absolute;
-    top: 100px;
-    left: 1025px;
   }
   
   .tamano {

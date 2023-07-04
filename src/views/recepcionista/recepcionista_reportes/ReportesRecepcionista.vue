@@ -3,7 +3,7 @@
       <div class="body-app">
         <div class="app-container">
           <SidebarComponent>
-            <ListSidebarGerente />
+            <ListSidebarRecepcionista />
           </SidebarComponent>
   
           <div class="app-content">
@@ -22,14 +22,15 @@
   
                 DASHBOARD: REPORTES OPERATIVOS
               </template>
+            
             </HeaderComponent>
 
-            <BotonesGraficoGerente></BotonesGraficoGerente>
+
+            <BotonesGrafico></BotonesGrafico>
             <div class="col-md-12 w-100 parent-canvas">
-              <GraficoCircular></GraficoCircular>
-              <GraficoBarras2></GraficoBarras2>
+              <GraficoBarras></GraficoBarras>
+              <GraficoLinear></GraficoLinear>
             </div>
-            
           </div>
         </div>
       </div>
@@ -40,33 +41,32 @@
   
   import SidebarComponent from "@/components/SidebarComponent.vue";
   import HeaderComponent from "@/components/HeaderComponent.vue";
-  import ListSidebarGerente from "@/components/ListSidebarGerente.vue";
-  import GraficoBarras2 from "@/components/GraficoBarras2";
-  import BotonesGraficoGerente from "@/components/BotonesGraficoGerente";
-  import GraficoCircular from "@/components/GraficoCircular.vue";
+  import ListSidebarRecepcionista from "@/components/ListSidebarRecepcionista.vue";
+  import BotonesGrafico from "@/components/BotonesGrafico.vue"; 
+  import GraficoBarras from "@/components/GraficoBarras";
+  import GraficoLinear from "@/components/GraficoLinear";
 
   export default {
     name: "HomeRecepView",
     name2: "BarChart",
     components: {
       SidebarComponent,
-      ListSidebarGerente,
+      ListSidebarRecepcionista,
       HeaderComponent,
-      GraficoBarras2,
-      BotonesGraficoGerente,
-      GraficoCircular
+      GraficoBarras,
+      GraficoLinear,
+      BotonesGrafico,
     },
     data() {
       return {
-      
+
       };
     },
   };
   </script>
   
   <style>
-
-     .parent-canvas {
+    .parent-canvas {
       display: flex;
       flex-direction: column;
       row-gap: 1rem;
@@ -80,5 +80,4 @@
         column-gap: 1rem;
       }
     }
-
   </style>

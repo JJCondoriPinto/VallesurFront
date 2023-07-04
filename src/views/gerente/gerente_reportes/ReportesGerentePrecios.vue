@@ -3,7 +3,7 @@
       <div class="body-app">
         <div class="app-container">
           <SidebarComponent>
-            <ListSidebarRecepcionista />
+            <ListSidebarGerente />
           </SidebarComponent>
   
           <div class="app-content">
@@ -23,9 +23,11 @@
                 DASHBOARD: REPORTES OPERATIVOS
               </template>
             </HeaderComponent>
-            <BotonesGrafico></BotonesGrafico>  
-            <GraficoCircularPolar></GraficoCircularPolar>
-            <GraficoCircular></GraficoCircular>
+            <BotonesGraficoGerente></BotonesGraficoGerente>  
+            <div class="col-md-12 w-100 parent-canvas">
+              <GraficoCircularPolar></GraficoCircularPolar>
+              
+            </div>
           </div>
         </div>
       </div>
@@ -36,21 +38,21 @@
   
   import SidebarComponent from "@/components/SidebarComponent.vue";
   import HeaderComponent from "@/components/HeaderComponent.vue";
-  import ListSidebarRecepcionista from "@/components/ListSidebarRecepcionista.vue";
+  import ListSidebarGerente from "@/components/ListSidebarGerente.vue";
   import GraficoCircularPolar from "@/components/GraficoCircularPolar.vue";
-  import GraficoCircular from "@/components/GraficoCircular.vue";
-  import BotonesGrafico from "@/components/BotonesGrafico";
+  import BotonesGraficoGerente from "@/components/BotonesGraficoGerente";
 
+  
   export default {
     name: "HomeRecepView",
     name2: "BarChart",
     components: {
       SidebarComponent,
-      ListSidebarRecepcionista,
+      ListSidebarGerente,
       HeaderComponent,
-      BotonesGrafico,
+      BotonesGraficoGerente,
       GraficoCircularPolar,
-      GraficoCircular,
+      
     },
     data() {
       return {
@@ -61,8 +63,18 @@
   </script>
   
   <style>
- 
-
+    .parent-canvas {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1rem;
+    }
+    @media screen and (min-width: 1200px) {
+      .parent-canvas {
+        flex-direction: row;
+        justify-content: space-evenly;
+        column-gap: 1rem;
+      }
+    }
 
   </style>
   

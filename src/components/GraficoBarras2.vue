@@ -1,6 +1,6 @@
 <template>
     <div id="graficobarras2">
-     <canvas id="myChart5" width="750" height="500"></canvas>
+     <canvas id="myChart5" width="600" height="450"></canvas>
     </div>
  </template>
  
@@ -79,10 +79,21 @@
  
  <style>
  
- #graficobarras2{
-     position: absolute;
-     top: 250px;
-     left: 350px;
- }
- 
+ .graficobarras2 {
+  display: flex;
+  justify-content: center;
+  grid-gap: 20px;
+  width: auto;
+  padding: 20px;
+  padding-top: 0;
+  /*margin-top: 10em;*/
+}
+
+#myChart5 {
+    background: #1a2740;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    width: 100%;
+}
  </style>

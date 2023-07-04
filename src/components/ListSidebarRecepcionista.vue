@@ -56,7 +56,7 @@
         </router-link>
     </li>
     <li :class="{ 'sidebar-list-item': true, 'active': isRouteActive('recepcionista-reportes') }">
-        <router-link :to="{ name: 'recepcionista-reportes' }">
+        <router-link :to="{ name: 'recepcionista-reportes' }"> 
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 12v-2a4 4 0 0 0-3-3.87V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8" />
@@ -68,7 +68,7 @@
             </svg>
 
             <span>Reportes</span>
-        </router-link>
+         </router-link> 
     </li>
     <li :class="{ 'sidebar-list-item': true, 'active': isRouteActive('recepcionista-cochera') }">
         <router-link :to="{ name: 'recepcionista-cochera' }">

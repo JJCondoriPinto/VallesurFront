@@ -6,12 +6,12 @@ import ReservasCreateAuth from '@/views/recepcionista/reservas/ReservCreateAuth.
 import ReservasCreateUser from '@/views/recepcionista/reservas/ReservCreateHuesped.vue'
 import ReservasCreate from '@/views/recepcionista/reservas/ReservCreate.vue';
 import ReservasEditarRecepView from '@/views/recepcionista/reservas/ReservEditView.vue';
-import ReportesGerente from '@/views/gerente/gerente_reportes/ReportesGerente'
-import ReportesGerentePrecios from '@/views/gerente/gerente_reportes/ReportesGerentePrecios'
-import ReportesGerentePersonas from '@/views/gerente/gerente_reportes/ReportesGerentePersonas'
-import CheckinView from '@/views/recepcionista/checkin-checkout/CheckinView'
-import CheckOutView from '@/views/recepcionista/checkin-checkout/CheckoutView'
-import GenerateCheckout from '@/views/recepcionista/checkin-checkout/GenerateCheckout'
+import CheckinView from '@/views/recepcionista/checkin-checkout/CheckinView';
+import CheckOutView from '@/views/recepcionista/checkin-checkout/CheckoutView';
+import GenerateCheckout from '@/views/recepcionista/checkin-checkout/GenerateCheckout';
+import ReportesRecepcionista from "@/views/recepcionista/recepcionista_reportes/ReportesRecepcionista";
+import ReportesRecepcionistaPrecios from "@/views/recepcionista/recepcionista_reportes/ReportesRecepcionistaPrecios";
+import ReportesRecepcionistaPersonas from "@/views/recepcionista/recepcionista_reportes/ReportesRecepcionistaPersonas";
 
 const routes_recepcionista = [
   {
@@ -77,19 +77,19 @@ const routes_recepcionista = [
   {
     path: "reportes",
     name: "recepcionista-reportes",
-    component: ReportesGerente,
+    component: ReportesRecepcionista
   },
 
   {
     path: "reportes/precios",
     name: "recepcionista-reportes-precios",
-    component: ReportesGerentePrecios,
+    component: ReportesRecepcionistaPrecios
   },
 
   {
     path: "reportes/personas",
     name: "recepcionista-reportes-personas",
-    component: ReportesGerentePersonas,
+    component: ReportesRecepcionistaPersonas
   },
 
   {

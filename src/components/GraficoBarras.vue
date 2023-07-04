@@ -1,6 +1,6 @@
 <template>
     <div class="graficobarras">
-     <canvas id="myChart" ></canvas>
+     <canvas id="myChart" width="600" height="450"></canvas>
     </div>
  </template>
  
@@ -78,14 +78,14 @@
  </script>
  
  <style>
+
  .graficobarras {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: center;
   grid-gap: 20px;
-  width: 100%;
+  width: auto;
   padding: 20px;
   padding-top: 0;
-  margin-top: 10em;
 }
 
 #myChart{

@@ -4,15 +4,14 @@
 * {
     box-sizing: border-box;
 }
-
 .body-app,
 .html {
     margin: 0;
     padding: 0;
-    height: 100vb;
+    height: 100vh;
 }
 
-.body -app{
+.body-app{
     font-family: "Poppins", sans-serif;
     background-color: var(--app-bg);
     -webkit-font-smoothing: antialiased;
