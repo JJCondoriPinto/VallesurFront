@@ -754,7 +754,7 @@ input {
     border-radius: 50%;
 }
 .form-button .form-add:hover {
-    background-color: var(--action-color-hover);
+    background-color: var(--button-add-hover);
 } 
 .form-subgroup textarea {
     grid-column: 1 / 3;

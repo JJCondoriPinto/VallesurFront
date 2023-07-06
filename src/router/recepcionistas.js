@@ -12,6 +12,8 @@ import ReportesGerentePersonas from '@/views/gerente/gerente_reportes/ReportesGe
 import CheckinView from '@/views/recepcionista/checkin-checkout/CheckinView'
 import CheckOutView from '@/views/recepcionista/checkin-checkout/CheckoutView'
 import GenerateCheckout from '@/views/recepcionista/checkin-checkout/GenerateCheckout'
+import HabitRecepShowView from '@/views/recepcionista/habitaciones/HabitRecepShowView'
+import HabitRecepView from '@/views/recepcionista/habitaciones/HabitRecepView'
 
 const routes_recepcionista = [
   {
@@ -26,7 +28,18 @@ const routes_recepcionista = [
   },
   {
     path: "habitaciones",
-    name: "recepcionista-habitaciones",
+    children: [
+      {
+        path: "",
+        name: "recepcionista-habitaciones",
+        component: HabitRecepView,
+      },
+      {
+        path: ":id",
+        name: "recepcionista-habitaciones-show",
+        component: HabitRecepShowView,
+      },
+    ]
   },
   {
     path: "reservas",
