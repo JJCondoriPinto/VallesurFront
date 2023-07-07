@@ -110,10 +110,6 @@
                     <span class="value-row status" :class="hab.estado">{{ hab.estado }}</span>
                   </td>
   
-                  <span class="cell-label">
-                    <textarea class="form-input" disabled></textarea>
-                  </span>
-  
                   <td class="product-cell action">
                     <button v-on:click.prevent="deleteHabit(hab._id)" class="raise btn-red">
                       Eliminar

@@ -7,6 +7,7 @@ import HabitGerenteShowView from "@/views/gerente/habitaciones/HabitGerenteShowV
 import HabitGerenteCreateView from "@/views/gerente/habitaciones/HabitGerenteCreateView.vue";
 import RecepGerenteView from '@/views/gerente/recepcionistas/RecepGerenteView'
 import RecepGerenteShowView from '@/views/gerente/recepcionistas/RecepGerenteShowView'
+import RecepGerenteCreateView from '@/views/gerente/recepcionistas/RecepGerenteCreateView'
 
 const routes_gerente = [
   {
@@ -65,7 +66,7 @@ const routes_gerente = [
       {
         path: "create",
         name: 'gerente-recepcionistas-create',
-        component: RecepGerenteView,
+        component: RecepGerenteCreateView,
       },
     ]
   },

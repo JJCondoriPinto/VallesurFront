@@ -1,16 +1,11 @@
 <script setup>
     /* eslint-disable */
-    
-    import { useRouter } from 'vue-router';
-
-    const router = useRouter();
 
     function update(target) {
 
         axios.put('api/recepcionistas', { tipo: "update", ...target.recepcionista})
         .then(res => {
             if (res.status == 200) {
-                console.log(res);
                 target.statusEdit = false;
             }
         })
@@ -25,7 +20,6 @@
             axios.put('api/recepcionistas', { tipo: "updateUser", ...target.recepcionista})
             .then(res => {
                 if (res.status == 200) {
-                    console.log(res);
                     target.statusEditUser = false;
                 }
             })
