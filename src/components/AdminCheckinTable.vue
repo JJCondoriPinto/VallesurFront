@@ -35,7 +35,7 @@
               <th>Recepcionista</th>
               <th>Fecha Ingreso</th>
               <th>Habitación</th>
-              <th>Estado</th>
+              <th>Precio</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -85,11 +85,11 @@ export default {
                 },
                 { data: 'reserva.huesped.nombres' },
                 { data: 'reserva.huesped.apellidos' },
-                { data: 'paxs' },
+                { data: 'reserva.datosReserva.pax_reserva' },
                 { data: 'recepcionista.nombres' },
                 { data: 'fecha_ingreso' },
                 { data: 'reserva.habitacion.tipo_habitacion'},
-                { data: 'estado' },
+                { data: 'reserva.habitacion.precio' },
                 {
                     data: null, render: function () {
                         return `<td>

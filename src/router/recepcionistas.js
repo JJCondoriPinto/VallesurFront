@@ -12,6 +12,8 @@ import GenerateCheckout from '@/views/recepcionista/checkin-checkout/GenerateChe
 import ReportesRecepcionista from "@/views/recepcionista/recepcionista_reportes/ReportesRecepcionista";
 import ReportesRecepcionistaPrecios from "@/views/recepcionista/recepcionista_reportes/ReportesRecepcionistaPrecios";
 import ReportesRecepcionistaPersonas from "@/views/recepcionista/recepcionista_reportes/ReportesRecepcionistaPersonas";
+import ReservAdminShow from "@/views/recepcionista/reservas/ReservAdminShow";
+import ReservasRecepScan from "@/views/recepcionista/reservas/ReservScanQR";
 
 const routes_recepcionista = [
   {
@@ -32,6 +34,11 @@ const routes_recepcionista = [
     path: "reservas",
     name: "recepcionista-reservas",
     component: RecepcionistaReservasView
+  },
+  {
+    path: "reservas-show/:id",
+    name: "recepcionista-reservas-show",
+    component: ReservAdminShow
   },
   {
     path: "reservas-editar/:id",
@@ -57,6 +64,11 @@ const routes_recepcionista = [
     path: "reservas-checkin/:id",
     name: "recepcionista-generate-checkin",
     component: RecepcionistaReservaGenerateCheckInView
+  },
+  {
+    path: "reservas-scan",
+    name: "reservas-scan-qr",
+    component: ReservasRecepScan
   },
   {
     path: "check",
