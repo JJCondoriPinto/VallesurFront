@@ -1,37 +1,3 @@
-<script setup>
-    /* eslint-disable */
-    
-    import { useRouter } from 'vue-router';
-
-    const router = useRouter();
-
-    function update(target) {
-
-      const newCaracteristicas = {};
-      const oldCaracteristicas = target.habitacion.caracteristicas;
-
-      target.habitacion.caracteristicas.forEach(caracteristica => {
-        newCaracteristicas[caracteristica.nombre] = {
-          cantidad: caracteristica.cantidad,
-          descripcion: caracteristica.descripcion
-        };
-      });
-
-      target.habitacion.caracteristicas = newCaracteristicas;
-
-      axios.put('api/habitaciones', target.habitacion)
-      .then(res => {
-        if (res.status == 200) {
-          console.log(res);
-          target.habitacion.caracteristicas = oldCaracteristicas;
-          router.push({ name: 'gerente-habitaciones' });
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    }
-</script>
 <template>
     <div class="html">
       <div class="body-app">
@@ -142,19 +108,6 @@
       falseEdit() {
         this.statusEdit = false;
       },
-      addCharacteristic() {
-        const nuevaCaracteristica = {
-          nombre: "",
-          cantidad: null,
-          descripcion: ""
-        };
-        this.habitacion.caracteristicas.push(nuevaCaracteristica);
-      },
-      removeCharacteristic() {
-        if (this.habitacion.caracteristicas.length > 0) {
-          this.habitacion.caracteristicas.pop();
-        }
-      }
     },
     components: {
       SidebarComponent,

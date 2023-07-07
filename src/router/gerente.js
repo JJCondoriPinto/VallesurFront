@@ -5,6 +5,8 @@ import HuespedesGerenteEdit from "@/views/gerente/huespedes/HuespGerentEdit.vue"
 import HabitGerenteView from "@/views/gerente/habitaciones/HabitGerenteView.vue";
 import HabitGerenteShowView from "@/views/gerente/habitaciones/HabitGerenteShowView.vue";
 import HabitGerenteCreateView from "@/views/gerente/habitaciones/HabitGerenteCreateView.vue";
+import RecepGerenteView from '@/views/gerente/recepcionistas/RecepGerenteView'
+import RecepGerenteShowView from '@/views/gerente/recepcionistas/RecepGerenteShowView'
 
 const routes_gerente = [
   {
@@ -49,7 +51,23 @@ const routes_gerente = [
   },
   {
     path: "recepcionistas",
-    name: "gerente-recepcionistas",
+    children: [
+      {
+        path: "",
+        name: 'gerente-recepcionistas',
+        component: RecepGerenteView,
+      },
+      {
+        path: ":id",
+        name: 'gerente-recepcionistas-show',
+        component: RecepGerenteShowView,
+      },
+      {
+        path: "create",
+        name: 'gerente-recepcionistas-create',
+        component: RecepGerenteView,
+      },
+    ]
   },
   {
     path: "reportes",
