@@ -11,7 +11,13 @@
     padding: 0;
     height: 100vb;
 }
-
+.body-app{
+    height: 100%;
+    font-family: "Poppins", sans-serif;
+    background-color: var(--app-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
 .body -app{
     font-family: "Poppins", sans-serif;
     background-color: var(--app-bg);

@@ -34,10 +34,20 @@ export default{
     },
     methods:{
         eliminarReserva(){
-            axios.delete('/api/reserva/'+this.id).then((value)=>{
+            axios.delete('api/reserva',{
+                params:{
+                    
+                    id:this.id
+                }
+                
+            }).then((value)=>{
                 console.log(value);
                 $('#cerrar').click();
                 this.vueComponent.$router.push({name:'recepcionista-reservas'})
+            })
+            .catch((e)=>{
+                console.log(e);
+                console.log(this.id);
             })
         },
     }

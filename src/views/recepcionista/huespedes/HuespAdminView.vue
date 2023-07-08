@@ -12,7 +12,7 @@
                             Huespedes Registrados
                         </template>
                     </HeaderComponent>
-                    <GerenteHuespedesHeader></GerenteHuespedesHeader>
+                    <AdminHuespedesHeader></AdminHuespedesHeader>
                 </div>
             </div>
         </div>
@@ -21,17 +21,16 @@
 <script>
     import SidebarComponent from '@/components/SidebarComponent.vue';
     import HeaderComponent from '@/components/HeaderComponent.vue';
-
     import ListSidebarRecepcionista from '@/components/ListSidebarRecepcionista.vue';
-    import GerenteHuespedesHeader from '@/components/GerenteHuespedesTable';
+    import AdminHuespedesHeader from '@/components/AdminHuespedesTable.vue';
     
     export default{
         name: 'HuespedesRecepView',
         components: {
             SidebarComponent,
             ListSidebarRecepcionista,
+            AdminHuespedesHeader,
             HeaderComponent,
-            GerenteHuespedesHeader
         }
     }
 </script>

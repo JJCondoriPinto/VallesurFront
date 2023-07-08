@@ -8,6 +8,7 @@ import ReservasCreate from '@/views/recepcionista/reservas/ReservCreate.vue';
 import ReservasEditarRecepView from '@/views/recepcionista/reservas/ReservEditView.vue';
 import ReservAdminShow from '@/views/recepcionista/reservas/ReservAdminShow.vue';
 import ReservasRecepScan from '@/views/recepcionista/reservas/ReservScanQR.vue';
+import RecepcionistaReservasHorariosView from '@/views/recepcionista/reservas/ReservHorariosView';
 
 const routes_recepcionista = [
   {
@@ -28,6 +29,11 @@ const routes_recepcionista = [
     path: "reservas",
     name: "recepcionista-reservas",
     component: RecepcionistaReservasView
+  },
+  {
+    path: "reservas-horario",
+    name: "recepcionista-reservas-horario",
+    component: RecepcionistaReservasHorariosView
   },
   {
     path: "reservas-show/:id",

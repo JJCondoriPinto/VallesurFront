@@ -105,7 +105,7 @@ export default {
                 }
             }).then((value) => {
                 console.log(value);
-                this.reserva = value.data.data[0];
+                this.reserva = value.data.data;
             })
         }
     }
