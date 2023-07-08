@@ -45,7 +45,14 @@ export default {
     },
     methods: {
         updateReserva(){
-            axios.put('/api/reserva/'+this.id,this.formData).then((value)=>{
+            axios.put('/api/reserva',{
+                
+                    id:this.id,
+                    fecha_checkin:this.formData.fecha_checkin,
+                    fecha_checkout:this.formData.fecha_checkout,
+                    pax_reserva:this.formData.pax_reserva
+                
+            }).then((value)=>{
                 console.log(value);
                 this.$router.push({name:'recepcionista-reservas'});
             })
@@ -72,9 +79,9 @@ export default {
                 }
             }).then((value) => {
                 console.log(value.data.data);
-                this.formData.fecha_checkin = value.data.data[0].datosReserva.fecha_checkin;
-                this.formData.fecha_checkout = value.data.data[0].datosReserva.fecha_checkout;
-                this.formData.pax_reserva = value.data.data[0].datosReserva.pax_reserva;
+                this.formData.fecha_checkin = value.data.data.datosReserva.fecha_checkin;
+                this.formData.fecha_checkout = value.data.data.datosReserva.fecha_checkout;
+                this.formData.pax_reserva = value.data.data.datosReserva.pax_reserva;
             })
         },
         getFormattedCheckInDate() {

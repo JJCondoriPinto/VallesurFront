@@ -1,5 +1,5 @@
 <template>
-    <div class="html">
+        <div class="html">
         <div class="body-app">
             <div class="app-container">
                 <SidebarComponent>
@@ -20,9 +20,9 @@
                     <BotonesReserva>
 
                     </BotonesReserva>
-                    <AdminReservasTable>
-
-                    </AdminReservasTable>
+                    <HorarioReserva>
+                        
+                    </HorarioReserva>
                 </div>
             </div>
         </div>
@@ -32,24 +32,19 @@
 import SidebarComponent from '@/components/SidebarComponent.vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import ListSidebarRecepcionista from '@/components/ListSidebarRecepcionista.vue';
-import AdminReservasTable from '@/components/AdminReservasTable.vue';
 import ActionsReserva from '@/components/ActionsReserva.vue';
 import BotonesReserva from '@/components/BotonesReserva.vue';
-
-export default {
-    name: 'ReservasRecepView',
+import HorarioReserva from '@/components/HorarioReservas.vue';
+export default{
     components: {
         SidebarComponent,
         ListSidebarRecepcionista,
         HeaderComponent,
-        AdminReservasTable,
         ActionsReserva,
-        BotonesReserva
+        BotonesReserva,
+        HorarioReserva
     },
     
 
 }
 </script>
-<style>
-@import url('@/css/app.css');
-</style>

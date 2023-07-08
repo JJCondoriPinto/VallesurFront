@@ -200,6 +200,7 @@ export default {
     },
     props: ['id'],
     mounted() {
+        console.log(this.nro_pax);
         this.loadAnimation();
         this.getReserva();
         this.socket = io('http://192.168.129.214:3000', { transports: ['websocket'] });
@@ -328,13 +329,15 @@ export default {
         },
         getReserva() {
             axios.get('/api/reserva', {
-                "id": this.id
+                params: {
+                    "id": this.id
+                }
             }).then((value) => {
-                console.log(value.data.data[0]);
-                this.formData.id_reserva = value.data.data[0]._id;
+                console.log(value.data.data);
+                this.formData.id_reserva = value.data.data._id;
                 this.formData.id_recepcionista = this.$store.state.user._id;
-                this.nro_pax = value.data.data[0].datosReserva.pax_reserva;
-                this.nombreHuesped = value.data.data[0].huesped.nombres + " " + value.data.data[0].huesped.apellidos
+                this.nro_pax = value.data.data.datosReserva.pax_reserva;
+                this.nombreHuesped = value.data.data.huesped.nombres + " " + value.data.data.huesped.apellidos
             });
         }
     }

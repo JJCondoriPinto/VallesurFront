@@ -65,7 +65,7 @@
       async login() {
         console.log(this.formData);
         await this.$store.dispatch('login', this.formData);
-        this.$router.push(`/${this.$store.state.user.rol=="admin"?'recepcionista':this.$store.state.user.rol}`);
+        this.$router.push(`/${this.$store.state.user.rol}`); 
       }
     }
   };
