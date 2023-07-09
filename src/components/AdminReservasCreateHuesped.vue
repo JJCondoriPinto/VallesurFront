@@ -83,6 +83,8 @@
 import axios from 'axios';
 
 export default {
+    
+
     data() {
         return {
             alerta: null,
@@ -101,7 +103,26 @@ export default {
             }
         };
     },
+    props: ["id"],
+    mounted(){
+            this.traerDataReniec();
+        },
     methods: {
+        traerDataReniec(){
+
+            if(this.id!="no-auth"){
+                axios.get("/api/dataReniec",{ params:{dni:this.id} }).then(
+                    (value)=>{
+                        this.formData.nombre_huesped=value.data.data.nombres;
+                        this.formData.apellido_huesped=value.data.data.apellido_paterno +" "+value.data.data.apellido_materno;
+                        this.formData.tipo_identificacion_huesped="Dni";
+                        this.formData.identificacion_huesped=value.data.data.numero;
+                    }
+                )
+            }else{
+                console.log(this.id)
+            }
+        },
         crearHuesped(){
             console.log(this.formData);
             axios.post('/api/huesped',this.formData).then(

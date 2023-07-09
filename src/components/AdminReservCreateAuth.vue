@@ -48,7 +48,12 @@ import axios from 'axios';
             .catch((error) => {
                 console.log(error);
                 this.$emit('mostrar-alerta', 'An example alert with an icon', 'info-fill');
-                this.$router.push({ name:'reservas-create-huesped' });
+                if(this.formData.tipo=="dni"){
+
+                    this.$router.push({ name:'reservas-create-huesped',params:{id:this.formData.id} });
+                }else{
+                    this.$router.push({ name:'reservas-create-huesped',params:{id:"no-auth"} });
+                }
             });
         },
     }

@@ -3,7 +3,7 @@ import RecepcionistaReservasView from '@/views/recepcionista/reservas/ReservAdmi
 import RecepcionistaHuespedesView from '@/views/recepcionista/huespedes/HuespAdminView.vue';
 import RecepcionistaReservaGenerateCheckInView from '@/views/recepcionista/reservas/ReservCheckInAdminView.vue';
 import ReservasCreateAuth from '@/views/recepcionista/reservas/ReservCreateAuth.vue';
-import ReservasCreateUser from '@/views/recepcionista/reservas/ReservCreateHuesped.vue'
+import ReservasCreateUser from '@/views/recepcionista/reservas/ReservCreateHuesped.vue';
 import ReservasCreate from '@/views/recepcionista/reservas/ReservCreate.vue';
 import ReservasEditarRecepView from '@/views/recepcionista/reservas/ReservEditView.vue';
 import ReportesRecepcionista from '@/views/recepcionista/recepcionista_reportes/ReportesRecepcionista'
@@ -84,12 +84,13 @@ const routes_recepcionista = [
   {
     path: "reservas-create-1",
     name: "reservas-create-auth",
-    component: ReservasCreateAuth
+    component: ReservasCreateAuth,
+    
   },
   {
-    path: "reservas-create-2",
+    path: "reservas-create-2/:id",
     name: "reservas-create-huesped",
-    component: ReservasCreateUser
+    component: ReservasCreateUser,
   },
   {
     path: "reservas-create-3/:id",

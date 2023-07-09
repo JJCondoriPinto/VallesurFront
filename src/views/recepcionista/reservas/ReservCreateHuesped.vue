@@ -14,7 +14,7 @@
                         <template #actions>
                         </template>
                     </HeaderComponent>
-                    <CreateUserForm>
+                    <CreateUserForm :id="id">
                         
                     </CreateUserForm>
                 </div>
@@ -31,6 +31,11 @@ import CreateUserForm from '@/components/AdminReservasCreateHuesped.vue';
 
 export default {
     name: 'ReservasCreateUser',
+    data(){
+        return{
+            id:this.$route.params.id
+        }
+    },
     components: {
         SidebarComponent,
         ListSidebarRecepcionista,
