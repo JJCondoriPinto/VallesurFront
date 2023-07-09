@@ -16,14 +16,11 @@
                         <tr>
                             <th>id</th>
                             <th>#</th>
-                            <th>Tipo de Identificación</th>
-                            <th>Nro de Identificación</th>  
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>Sexo</th>
-                            <th>Nacionalidad</th>
-                            <th>Telefono</th>
-                            <th>Acciones</th>
+                            <th>Nro de Habitacion</th>
+                            <th>Tipo de Habitacion</th>  
+                            <th>Precio</th>
+                            <th>Estado</th>
+                            <th>Tiempo Reservado</th>
                         </tr>
                     </thead>
                 </DataTable>
@@ -94,21 +91,24 @@ export default {
                 {
                     data: null, render: function (data, type, row, meta) { return `${meta.row + 1}` }
                 },
-                { data: 'identificacion.tipo_identificacion' },
-                { data: 'identificacion.identificacion_huesped' },
-                { data: 'nombres' },
-                { data: 'apellidos' },
-                { data: 'sexo' },
-                { data: 'nacionalidad' },
-                { data: 'telefono' },
-                {
-                    data: null, render: function () {
-                        return `<td>
-                        <button id="editar" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button id="eliminar" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#Huespedes"><i class="fa-solid fa-trash"></i></button>
-                        </td>`;
+                { data: 'nro_habitacion' },
+                { data: 'tipo_habitacion' },
+                { data: 'precio' },
+                { data: 'estado' },
+                { data: null,render:
+                    function(data,type,row){
+                        let inicio=row.reservado_desde;
+                        let fin=row.reservado_hasta;
+                        if(inicio!=null && fin!=null && inicio!="" && fin !=""){
+
+                            return `${inicio} hasta ${fin}`
+                        }else{
+                            return `No disponible`
+                        }
+                        //return `<button @click='imprimir(${row})'>Printear</button>`
                     }
                 },
+
             ],
             botones: [
                 {
@@ -143,33 +143,9 @@ export default {
         this.getProducts();
         this.$nextTick(() => {
             const table = $('.table').DataTable();
-            table.on('click', '#editar', (event) => {
-                event.stopPropagation();
-                const rowData = table.row($(event.currentTarget).closest('tr')).data();
-                console.log(`Editar registro con ID: ${rowData._id}`);
-                this.editarHuesped(rowData._id);
-
-            });
-            table.on('click', '#eliminar', (event) => {
-                event.stopPropagation();
-                const rowData = table.row($(event.currentTarget).closest('tr')).data();
-                this.selectedID=rowData._id
-/*                 if (confirm('¿Estás seguro de que deseas eliminar este elemento?')) {
-                    axios.delete('api/huespedes',{params:{id:rowData._id}}).then((value) => {
-                        console.log(value);
-                        this.bodyModal=value.data.message;
-                        this.abrirModalInformativo();
-                        //location.reload();
-                    })
-                } else {
-                    // El usuario hizo clic en "Cancelar"
-                    // No se realiza ninguna acción
-                } */
-            });
             table.on('click', 'tr', (event) => {
                 const rowData = table.row(event.currentTarget).data();
                 if (rowData != null) {
-
                     console.log(rowData);
                     this.onRowClick(rowData._id);
                 }
@@ -177,22 +153,20 @@ export default {
         });
     },
     methods: {
-        abrirModalInformativo(){
-            $('#ModalInfoAbrir').click();
-        },
-        editarHuesped(id) {
-            this.$router.push({ name: 'recepcionista-huespedes-edit', params: { id: id } });
+        imprimir(data){
+            console.log(data);
         },
         getProducts() {
-            axios.get("/api/huespedes").then(
+            axios.get("api/habitaciones").then(
                 response => (
                     console.log(response),
                     this.products = response.data.data
                 )
             );
         },
+
         onRowClick(id) {
-            this.$router.push({ name: 'recepcionista-huespedes-show', params: { id: id } });
+            this.$router.push({ name: 'recepcionista-habitaciones-show', params: { id: id } });
         }
     }
 }

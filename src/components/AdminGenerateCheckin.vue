@@ -203,7 +203,7 @@ export default {
         console.log(this.nro_pax);
         this.loadAnimation();
         this.getReserva();
-        this.socket = io('http://192.168.129.214:3000', { transports: ['websocket'] });
+        this.socket = io('http://192.168.1.101:3000', { transports: ['websocket'] });
 
         this.socket.on('connect', () => {
             console.log('Conexión establecida con el servidor Socket.IO');

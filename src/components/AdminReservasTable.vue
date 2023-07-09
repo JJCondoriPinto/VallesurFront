@@ -30,6 +30,7 @@
                 </DataTable>
             </div>
             <div>
+                
                 <Modal :id=this.idSelected>
 
                 </Modal>
@@ -104,7 +105,7 @@ export default {
 
                 },
                 { data: 'datosReserva.tipo_reserva' },
-                { data: 'empresa',render:
+                { data: 'datosReserva.empresa',render:
                     function(data){
                         return data.razon_social==null?'No Aplicó':data.razon_social;
                     }

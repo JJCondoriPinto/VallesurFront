@@ -20,7 +20,7 @@
             <p class="switch__description description">
               Gracias por trabajar con nosotros
             </p>
-            <div id="messageApi">{{ $store.state.errors }}</div>
+            <div id="messageApi" class="w-100 text-center">{{ $store.state.errors }}</div>
           </div>
         </div>
         <div class="switch__container form_parent">
@@ -63,9 +63,8 @@
     }),
     methods: {  
       async login() {
-        console.log(this.formData);
         await this.$store.dispatch('login', this.formData);
-        this.$router.push(`/${this.$store.state.user.rol}`); 
+        if (this.$store.state.auth) {this.$router.push(`/${this.$store.state.user.rol}`);}
       }
     }
   };

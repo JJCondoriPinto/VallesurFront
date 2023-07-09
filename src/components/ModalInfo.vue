@@ -25,7 +25,8 @@ export default {
     props: ['body','title'],
     methods:{
         recargar(){
-            location.reload();
+            //this.$router.push({name:"recepcionista-huespedes"})
+            return this.$router.push({name:"recepcionista-huespedes"})
         }
     }
 }

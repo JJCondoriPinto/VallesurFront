@@ -35,6 +35,7 @@
               <th>Descripicion Salida</th>
               <th>Nombre A.</th>
               <th>Turno</th>
+              <th>Estadia</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -110,6 +111,9 @@ export default {
         { data: "descripcion_salida" },
         { data: "recepcionista.nombres" },
         { data: "recepcionista.turno" },
+        { data: null,render(data, type, row, meta){
+          return meta
+        } },
         {
           data: null,
           render: function () {

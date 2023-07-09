@@ -2,9 +2,17 @@ import HomeGerenteView from "@/views/gerente/HomeGerenteView.vue";
 import HuespedesGerenteView from "@/views/gerente/huespedes/HuespGerentView.vue";
 import HuespedesGerenteShow from "@/views/gerente/huespedes/HuespGerentShow.vue";
 import HuespedesGerenteEdit from "@/views/gerente/huespedes/HuespGerentEdit.vue";
-import ReportesGerente from "@/views/gerente/gerente_reportes/ReportesGerente.vue";
-import ReportesGerentePersonas from "@/views/gerente/gerente_reportes/ReportesGerentePersonas";
-import ReportesGerentePrecios from "@/views/gerente/gerente_reportes/ReportesGerentePrecios";
+import HabitGerenteView from "@/views/gerente/habitaciones/HabitGerenteView.vue";
+import HabitGerenteShowView from "@/views/gerente/habitaciones/HabitGerenteShowView.vue";
+import HabitGerenteCreateView from "@/views/gerente/habitaciones/HabitGerenteCreateView.vue";
+import RecepGerenteView from '@/views/gerente/recepcionistas/RecepGerenteView'
+import RecepGerenteShowView from '@/views/gerente/recepcionistas/RecepGerenteShowView'
+import RecepGerenteCreateView from '@/views/gerente/recepcionistas/RecepGerenteCreateView'
+import ReportesGerente from '@/views/gerente/gerente_reportes/ReportesGerente'
+import ReportesGerentePrecios from '@/views/gerente/gerente_reportes/ReportesGerentePrecios'
+import ReportesGerentePersonas from '@/views/gerente/gerente_reportes/ReportesGerentePersonas'
+
+
 
 const routes_gerente = [
   {
@@ -29,11 +37,43 @@ const routes_gerente = [
   },
   {
     path: "habitaciones",
-    name: "gerente-habitaciones",
+    children: [
+      {
+        path: "",
+        name: "gerente-habitaciones",
+        component: HabitGerenteView,
+      },
+      {
+        path: ":id",
+        name: "gerente-habitaciones-show",
+        component: HabitGerenteShowView,
+      },
+      {
+        path: "create",
+        name: "gerente-habitaciones-create",
+        component: HabitGerenteCreateView,
+      },
+    ],
   },
   {
     path: "recepcionistas",
-    name: "gerente-recepcionistas",
+    children: [
+      {
+        path: "",
+        name: 'gerente-recepcionistas',
+        component: RecepGerenteView,
+      },
+      {
+        path: ":id",
+        name: 'gerente-recepcionistas-show',
+        component: RecepGerenteShowView,
+      },
+      {
+        path: "create",
+        name: 'gerente-recepcionistas-create',
+        component: RecepGerenteCreateView,
+      },
+    ]
   },
   {
     path: "reportes",

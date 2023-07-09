@@ -6,15 +6,19 @@ import ReservasCreateAuth from '@/views/recepcionista/reservas/ReservCreateAuth.
 import ReservasCreateUser from '@/views/recepcionista/reservas/ReservCreateHuesped.vue'
 import ReservasCreate from '@/views/recepcionista/reservas/ReservCreate.vue';
 import ReservasEditarRecepView from '@/views/recepcionista/reservas/ReservEditView.vue';
-import ReservAdminShow from '@/views/recepcionista/reservas/ReservAdminShow.vue';
-import ReservasRecepScan from '@/views/recepcionista/reservas/ReservScanQR.vue';
-import RecepcionistaReservasHorariosView from '@/views/recepcionista/reservas/ReservHorariosView';
-import CheckinView from '@/views/recepcionista/checkin-checkout/CheckinView.vue';
-import CheckoutView from '@/views/recepcionista/checkin-checkout/CheckoutView.vue';
-import GenerateCheckout from '@/views/recepcionista/checkin-checkout/GenerateCheckout.vue';
-import ReportesRecepcionista from '@/views/recepcionista/recepcionista_reportes/ReportesRecepcionista.vue';
-import ReportesRecepcionistaPrecios from '@/views/recepcionista/recepcionista_reportes/ReportesRecepcionistaPrecios.vue';
-import ReportesRecepcionistaPersonas from '@/views/recepcionista/recepcionista_reportes/ReportesRecepcionistaPersonas.vue';
+import ReportesRecepcionista from '@/views/recepcionista/recepcionista_reportes/ReportesRecepcionista'
+import ReportesRecepcionistaPrecios from '@/views/recepcionista/recepcionista_reportes/ReportesRecepcionistaPrecios'
+import ReportesRecepcionistaPersonas from '@/views/recepcionista/recepcionista_reportes/ReportesRecepcionistaPersonas'
+import CheckinView from '@/views/recepcionista/checkin-checkout/CheckinView'
+import CheckoutView from '@/views/recepcionista/checkin-checkout/CheckoutView'
+import GenerateCheckout from '@/views/recepcionista/checkin-checkout/GenerateCheckout'
+import HabitRecepShowView from '@/views/recepcionista/habitaciones/HabitRecepShowView'
+import HabitRecepView from '@/views/recepcionista/habitaciones/HabitRecepView'
+import ReservasRecepScan from '@/views/recepcionista/reservas/ReservScanQR.vue'
+import ReservAdminShow from '@/views/recepcionista/reservas/ReservAdminShow.vue'
+import RecepcionistaReservasHorariosView from '@/views/recepcionista/reservas/ReservHorariosView'
+import RecepcionistaHuespedesShow from '@/views/recepcionista/huespedes/HuespAdminShow'
+import RecepcionistaHuespedesEdit from '@/views/recepcionista/huespedes/HuespAdminEdit'
 
 const routes_recepcionista = [
   {
@@ -24,12 +28,38 @@ const routes_recepcionista = [
   },
   {
     path: "huespedes",
-    name: "recepcionista-huespedes",
-    component: RecepcionistaHuespedesView
+    children: [
+      {
+        path: "",
+        name: "recepcionista-huespedes",
+        component: RecepcionistaHuespedesView
+      },
+      {
+        path: ":id",
+        name: "recepcionista-huespedes-show",
+        component: RecepcionistaHuespedesShow
+      },
+      {
+        path: "edit/:id",
+        name: "recepcionista-huespedes-edit",
+        component: RecepcionistaHuespedesEdit
+      },
+    ],
   },
   {
     path: "habitaciones",
-    name: "recepcionista-habitaciones",
+    children: [
+      {
+        path: "",
+        name: "recepcionista-habitaciones",
+        component: HabitRecepView,
+      },
+      {
+        path: ":id",
+        name: "recepcionista-habitaciones-show",
+        component: HabitRecepShowView,
+      },
+    ]
   },
   {
     path: "reservas",

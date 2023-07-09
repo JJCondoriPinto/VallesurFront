@@ -43,13 +43,13 @@
                         <div class="card-group form-group">
                             <label>Nacionalidad</label>
                             <select class="form-input" v-model=formData.nacionalidad_huesped>
-                                <option value="Peru">Perú</option>
-                                <option value="Chile">Chile</option>
-                                <option value="Brasil">Brasil</option>
-                                <option value="Argentina">Argentina</option>
-                                <option value="Espana">España</option>
-                                <option value="Bolivia">Bolivia</option>
-                                <option value="Uruguay">Uruguay</option>
+                                <option value="peru">Perú</option>
+                                <option value="chile">Chile</option>
+                                <option value="brasil">Brasil</option>
+                                <option value="argentina">Argentina</option>
+                                <option value="espana">España</option>
+                                <option value="bolivia">Bolivia</option>
+                                <option value="uruguay">Uruguay</option>
                             </select>
                         </div>
                         <div class="card-group form-group">
