@@ -1,4 +1,5 @@
 import HomeRecepView from '@/views/recepcionista/HomeRecepView.vue';
+
 import RecepcionistaReservasView from '@/views/recepcionista/reservas/ReservAdminView.vue';
 import RecepcionistaHuespedesView from '@/views/recepcionista/huespedes/HuespAdminView.vue';
 import RecepcionistaReservaGenerateCheckInView from '@/views/recepcionista/reservas/ReservCheckInAdminView.vue';
