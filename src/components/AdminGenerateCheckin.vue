@@ -192,7 +192,9 @@ export default {
             formData: {
                 id_reserva: '',
                 id_recepcionista: '',
-                paxs: null,
+                paxs: [
+                    
+                ],
                 fecha_ingreso: '',
                 nota_adicionales: '',
             },
@@ -203,7 +205,7 @@ export default {
         console.log(this.nro_pax);
         this.loadAnimation();
         this.getReserva();
-        this.socket = io('http://192.168.1.101:3000', { transports: ['websocket'] });
+        this.socket = io('https://api.express.vallesur.bjrcode.com', { transports: ['websocket'] });
 
         this.socket.on('connect', () => {
             console.log('Conexión establecida con el servidor Socket.IO');
@@ -263,6 +265,7 @@ export default {
         addValue(value) {
             this.FotoEcaneada = false;
             this.values.push(value);
+            this.formData.paxs.push(value);
             this.resultadoEscaner = {
                 apellidos: null,
                 nombres: null,
@@ -320,10 +323,10 @@ export default {
                 this.showAlert=false;
                 this.formData.paxs=this.values;
                 console.log(this.formData);
-                /* axios.post('/api/checkin', this.formData).then((value) => {
+                axios.post('/api/checkin', this.formData).then((value) => {
                     console.log(value);
                     this.$router.push({ name: 'recepcionista-reservas' });
-                }) */
+                })
 
             }
         },

@@ -13,7 +13,7 @@
                     </div>
                     <div class="card-group form-group">
                         <label class="form-label label-radio">Nro de Documento</label>
-                        <input class="form-input" type="number" placeholder="Identificador" v-model=formData.id required>
+                        <input class="form-input" type="text" placeholder="Identificador" v-model=formData.id required>
                     </div>
                     <div class="row">
                         <button class="btn btn-success px-5">Siguiente</button>

@@ -34,8 +34,9 @@ export default {
 
     methods: {
         onDecode(result) {
-            this.result = result;
-            window.location = result;
+            console.log(result)
+           this.result = result; /* 
+            window.location = result; */
         },
 
         async onInit(promise) {

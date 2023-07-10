@@ -2,22 +2,21 @@
     <div class="row">
         <div class="">
             <div class="table-responsive">
-                <DataTable :data="products" :columns="columns"
-                    class="table table-striped table-bordered display table-hover table-dark" :options="{
-                        responsive: true, autoWidth: true, dom: 'Bfrtip', language: {
-                            search: 'Buscar...',
-                            zeroRecords: 'No hay registros para mostrar',
-                            info: 'Mostrando del _START_ a _END_ de _TOTAL_ registros',
-                            infoFiltered: '(Filtrados de _MAX_ registros.)',
-                            paginate: { first: 'Primero', previous: 'Anterior', next: 'Siguiente', last: 'Último' }
-                        }, buttons: botones
-                    }">
+                <DataTable :data="products" :columns="columns" class="tablita display" :options="{
+                    responsive: true, autoWidth: true, dom: 'Bfrtip', language: {
+                        search: 'Buscar...',
+                        zeroRecords: 'No hay registros para mostrar',
+                        info: 'Mostrando del _START_ a _END_ de _TOTAL_ registros',
+                        infoFiltered: '(Filtrados de _MAX_ registros.)',
+                        paginate: { first: 'Primero', previous: 'Anterior', next: 'Siguiente', last: 'Último' }
+                    }, buttons: botones
+                }" :columnDefs="columnDefs">
                     <thead>
                         <tr>
                             <th>id</th>
                             <th>#</th>
                             <th>Tipo de Identificación</th>
-                            <th>Nro de Identificación</th>  
+                            <th>Nro de Identificación</th>
                             <th>Nombres</th>
                             <th>Apellidos</th>
                             <th>Sexo</th>
@@ -28,7 +27,7 @@
                     </thead>
                 </DataTable>
                 <ModalEliminar :id="selectedID">
-                    
+
                 </ModalEliminar>
                 <ModalInfo :title="titleModal" :body="bodyModal">
 
@@ -42,11 +41,77 @@
 @import url('@/css/app.css');
 @import 'datatables.net-bs5';
 
+.tablita {
+    background-color: rgb(35, 43, 72);
+    text-align: center;
+    text-transform: capitalize;
+    border-collapse: collapse;
+    border: 1px solid #000;
+
+}
+.dataTables_filter input {
+  color: white;
+  background-color: rgb(35, 43, 72);
+  border-color: #000;
+}
+.page-item.active .page-link {
+    background-color: rgb(35, 43, 72) !important;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.page-link {
+    background-color: rgb(35, 43, 72) !important;
+    color: black !important;
+    cursor: pointer;
+}
+.tablita th {
+    color: #fff;
+    /* Color de texto para los encabezados de columna */
+    font-weight: bold;
+    /* Fuente en negrita para los encabezados de columna */
+}
+
+.tablita td {
+    color: #fff;
+    /* Color de texto para las celdas de datos */
+}
+
+.tablita tr {
+    transition: background-color 0.3s ease;
+    /* Transición de 0.3 segundos con aceleración */
+}
+
+.tablita {
+    border-spacing: 5px;
+    /* Ajusta el valor según el espacio deseado entre las celdas */
+}
+
+.tablita {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    /* Sombra de 2px de desplazamiento vertical y 4px de desenfoque */
+}
+
+.tablita th,
+.tablita td {
+    padding: 10px;
+    /* Ajusta el valor de padding según sea necesario */
+}
+
+tr {
+    background-color: rgb(30, 30, 62);
+}
+
+.tablita tbody tr:hover {
+    background-color: #130f2b;
+    cursor: pointer;
+}
+
 .table-responsive {
     max-height: 500px;
     color: white;
     padding-right: 15px;
     margin-top: 50px;
+
 }
 </style>
 <script>
@@ -82,10 +147,16 @@ export default {
     },
     data() {
         return {
-            titleModal:'Atención',
-            bodyModal:'',
-            selectedID:null,
+            titleModal: 'Atención',
+            bodyModal: '',
+            selectedID: null,
             products: null,
+            columnDefs: [
+                {
+                    targets: -1,
+                    className: 'dt-body-right'
+                }
+            ],
             columns: [
                 {
                     data: '_id',
@@ -153,18 +224,18 @@ export default {
             table.on('click', '#eliminar', (event) => {
                 event.stopPropagation();
                 const rowData = table.row($(event.currentTarget).closest('tr')).data();
-                this.selectedID=rowData._id
-/*                 if (confirm('¿Estás seguro de que deseas eliminar este elemento?')) {
-                    axios.delete('api/huespedes',{params:{id:rowData._id}}).then((value) => {
-                        console.log(value);
-                        this.bodyModal=value.data.message;
-                        this.abrirModalInformativo();
-                        //location.reload();
-                    })
-                } else {
-                    // El usuario hizo clic en "Cancelar"
-                    // No se realiza ninguna acción
-                } */
+                this.selectedID = rowData._id
+                /*                 if (confirm('¿Estás seguro de que deseas eliminar este elemento?')) {
+                                    axios.delete('api/huespedes',{params:{id:rowData._id}}).then((value) => {
+                                        console.log(value);
+                                        this.bodyModal=value.data.message;
+                                        this.abrirModalInformativo();
+                                        //location.reload();
+                                    })
+                                } else {
+                                    // El usuario hizo clic en "Cancelar"
+                                    // No se realiza ninguna acción
+                                } */
             });
             table.on('click', 'tr', (event) => {
                 const rowData = table.row(event.currentTarget).data();
@@ -177,7 +248,7 @@ export default {
         });
     },
     methods: {
-        abrirModalInformativo(){
+        abrirModalInformativo() {
             $('#ModalInfoAbrir').click();
         },
         editarHuesped(id) {
