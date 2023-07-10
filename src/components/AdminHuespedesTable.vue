@@ -2,7 +2,7 @@
     <div class="row">
         <div class="">
             <div class="table-responsive">
-                <DataTable :data="products" :columns="columns" class="tablita display" :options="{
+                <DataTable id="tabla" :data="products" :columns="columns" class="tablita display" :options="{
                     responsive: true, autoWidth: true, dom: 'Bfrtip', language: {
                         search: 'Buscar...',
                         zeroRecords: 'No hay registros para mostrar',
@@ -50,20 +50,18 @@
 
 }
 .dataTables_filter input {
+  margin-bottom: 20px !important;
+  margin-top: 30px;
   color: white;
   background-color: rgb(35, 43, 72);
   border-color: #000;
 }
-.page-item.active .page-link {
-    background-color: rgb(35, 43, 72) !important;
-    border: 1px solid black;
+
+.pagination .paginate_button{
     cursor: pointer;
-}
-.page-link {
-    background-color: rgb(35, 43, 72) !important;
-    color: black !important;
-    cursor: pointer;
-}
+    border: 1px solid #000 !important;
+    border: #000 !important;
+} 
 .tablita th {
     color: #fff;
     /* Color de texto para los encabezados de columna */
@@ -85,11 +83,16 @@
     border-spacing: 5px;
     /* Ajusta el valor según el espacio deseado entre las celdas */
 }
-
-.tablita {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-    /* Sombra de 2px de desplazamiento vertical y 4px de desenfoque */
+.dataTables_paginate a{
+    background-color: rgb(35, 43, 72) !important;
+    color: rgb(255, 255, 255) !important;
+    border: 1px solid #000 !important;
+    cursor: pointer !important;
 }
+.tablita{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
 
 .tablita th,
 .tablita td {
@@ -105,6 +108,15 @@ tr {
     background-color: #130f2b;
     cursor: pointer;
 }
+.tablita tbody tr td {
+  border-bottom: 1.5px solid rgb(30, 30, 62);
+}
+
+.tablita tbody tr {
+    background-color: #130f2b;
+    cursor: pointer;
+    border-bottom: 1px solid #9e3c3c !important;
+}
 
 .table-responsive {
     max-height: 500px;
@@ -112,6 +124,12 @@ tr {
     padding-right: 15px;
     margin-top: 50px;
 
+}
+.tablita tr{
+    border-bottom: 5px solid #9e3c3c !important;
+}
+.btn.boton-acciones{
+    background-color: rgb(35, 43, 72);
 }
 </style>
 <script>
@@ -186,25 +204,25 @@ export default {
                     title: 'Reporte de Huespedes',
                     extend: 'excelHtml5',
                     text: '<i class="fa-solid fa-file-excel" ></i> Excel',
-                    className: 'btn btn-success'
+                    className: 'btn boton-acciones rounded-0'
                 },
                 {
                     title: 'Reporte de Huespedes',
                     extend: 'pdfHtml5',
                     text: '<i class="fa-solid fa-file-pdf" ></i> PDF',
-                    className: 'btn btn-danger'
+                    className: 'btn boton-acciones rounded-0'
                 },
                 {
                     title: 'Reporte de Huespedes',
                     extend: 'print',
                     text: '<i class="fa-solid fa-print" ></i> Imprimir',
-                    className: 'btn btn-dark'
+                    className: 'btn boton-acciones rounded-0'
                 },
                 {
                     title: 'Reporte de Huespedes',
                     extend: 'copy',
                     text: '<i class="fa-solid fa-copy" ></i> Copiar Contenido',
-                    className: 'btn btn-light'
+                    className: 'btn boton-acciones rounded-0'
                 },
 
             ]
@@ -213,7 +231,7 @@ export default {
     mounted() {
         this.getProducts();
         this.$nextTick(() => {
-            const table = $('.table').DataTable();
+            const table = $('#tabla').DataTable();
             table.on('click', '#editar', (event) => {
                 event.stopPropagation();
                 const rowData = table.row($(event.currentTarget).closest('tr')).data();
@@ -239,6 +257,7 @@ export default {
             });
             table.on('click', 'tr', (event) => {
                 const rowData = table.row(event.currentTarget).data();
+                console.log("hola");
                 if (rowData != null) {
 
                     console.log(rowData);

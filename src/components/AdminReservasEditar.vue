@@ -6,17 +6,17 @@
                 <form class="form-updateUser" @submit.prevent="updateReserva">
                     <input type="hidden" v-model="this.formData._id">
                     <div class="card-group form-group">
-                        <label class="form-label label-radio">Fecha Reserva Entrada</label>
-                        <input class="form-input" type="date" v-model="this.formData.fecha_checkin" :min="getFechaActual()"
+                        <label>Fecha Reserva Entrada</label>
+                        <input class="form-input" type="date" v-model=formData.fecha_checkin :min="getFechaActual()"
                             required>
                     </div>
                     <div class="card-group form-group">
-                        <label class="form-label label-radio">Fecha Reserva Salida</label>
-                        <input class="form-input" type="date" v-model="this.formData.fecha_checkout" :min="getFormattedCheckInDate()" required>
+                        <label>Fecha Reserva Salida</label>
+                        <input class="form-input" type="date" v-model=formData.fecha_checkout :min="getFormattedCheckInDate()" required>
                     </div>
                     <div class="card-group form-group">
-                        <label class="form-label label-radio">Acompañantes</label>
-                        <input class="form-input" type="number" v-model="this.formData.pax_reserva" required>
+                        <label>Acompañantes</label>
+                        <input class="form-input" type="number" v-model=formData.pax_reserva required>
                     </div>
                     <div class="row">
                         <button class="btn btn-success px-5">Editar</button>
@@ -26,6 +26,28 @@
         </div>
     </div>
 </template>
+<style>
+.form{
+    max-width: 400px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+}
+.form label{
+    align-content: start;
+    text-align: left;
+    align-items: start;
+    align-self: self-start;
+}
+.container-edit {
+
+    overflow: auto;
+    
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Invierte el color del icono */
+}
+</style>
 <script>
 import axios from 'axios';
 

@@ -2,8 +2,8 @@
     <div class="row">
         <div class="">
             <div class="table-responsive">
-                <DataTable :data="reservas" :columns="columns"
-                    class="table table-striped table-bordered display table-hover table-dark" :options="{
+                <DataTable :data="reservas" :columns="columns" id="tabla"
+                    class="tablita" :options="{
                         responsive: true, autoWidth: false, dom: 'Bfrtip', language: {
                             search: 'Buscar...',
                             zeroRecords: 'No hay registros para mostrar',
@@ -126,25 +126,25 @@ export default {
                     title: 'Reporte de Huespedes',
                     extend: 'excelHtml5',
                     text: '<i class="fa-solid fa-file-excel" ></i> Excel',
-                    className: 'btn btn-success'
+                    className: 'btn boton-acciones rounded-0'
                 },
                 {
                     title: 'Reporte de Huespedes',
                     extend: 'pdfHtml5',
                     text: '<i class="fa-solid fa-file-pdf" ></i> PDF',
-                    className: 'btn btn-danger'
+                    className: 'btn boton-acciones rounded-0'
                 },
                 {
                     title: 'Reporte de Huespedes',
                     extend: 'print',
                     text: '<i class="fa-solid fa-print" ></i> Imprimir',
-                    className: 'btn btn-dark'
+                    className: 'btn boton-acciones rounded-0'
                 },
                 {
                     title: 'Reporte de Huespedes',
                     extend: 'copy',
                     text: '<i class="fa-solid fa-copy" ></i> Copiar Contenido',
-                    className: 'btn btn-light'
+                    className: 'btn boton-acciones rounded-0'
                 },
 
             ]
@@ -154,7 +154,7 @@ export default {
         const vueComponent = this;
         this.getReservas();
         this.$nextTick(() => {
-            const table = $('.table').DataTable();
+            const table = $('#tabla').DataTable();
             table.on('click', '#editar', (event) => {
                 event.stopPropagation();
                 const rowData = table.row($(event.currentTarget).closest('tr')).data();

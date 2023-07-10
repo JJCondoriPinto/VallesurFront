@@ -45,8 +45,8 @@
               required
             />
             <button class="form__button button_login submit">
-              <p v-if="this.status == 0" class="form__label">Iniciar sesion</p>
-              <div v-if="this.status == 1" class="d-flex">
+              <p v-if="this.status == 0" class="form__label label_submit1">Iniciar sesion</p>
+              <div v-if="this.status == 1" class="d-flex h-100 label_submit">
                 <div class="spinner-border" role="status" v-if="this.status == 1">
                   <span class="sr-only">Loading...</span>
                 </div>  

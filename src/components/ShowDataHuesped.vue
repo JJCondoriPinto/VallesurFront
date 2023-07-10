@@ -13,7 +13,7 @@
                     </button>
 
                 </router-link>
-                
+
                 <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Huespedes">
 
                     <i class="fa-solid fa-trash"></i>
@@ -67,7 +67,7 @@
                         </div>
                         <div class="profile-detail">
                             <div class="profile-detail-small">Correo</div>
-                            <div class="profile-detail-large">{{ huesped ? huesped.correo : 'Cargando' }}</div>
+                            <div class="profile-detail-large-email">{{ huesped ? huesped.correo : 'Cargando' }}</div>
                         </div>
                         <div class="profile-detail">
                             <div class="profile-detail-small">Registrado en</div>
@@ -100,7 +100,7 @@ export default {
     mounted() {
         this.getUser();
     },
-    components:{
+    components: {
         Modal
     },
     methods: {
@@ -112,7 +112,26 @@ export default {
                 }
             }).then((value) => {
                 console.log(value);
+                let registradoDate = value.data.data.created_at;
+                let actualizadoDate = value.data.data.updated_at;
+                const fechaRegister = new Date(registradoDate);
+                const opcionesFechaRegister = { day: '2-digit', month: 'long', year: 'numeric' };
+                const fechaFormateadaRegister = fechaRegister.toLocaleDateString('es-ES', opcionesFechaRegister);
+                const fechaUpdated = new Date(actualizadoDate);
+                const opcionesFechaUpdated = { day: '2-digit', month: 'long', year: 'numeric' };
+                const fechaFormateadaUpdated = fechaUpdated.toLocaleDateString('es-ES', opcionesFechaUpdated);
+
+                const fecha = new Date(value.data.data.fecha_nacimiento);
+                const opcionesFecha = { day: '2-digit', month: 'long', year: 'numeric' };
+                const fechaNacimientoFormateada = fecha.toLocaleDateString('es-ES', opcionesFecha);
+
+
+
                 this.huesped = value.data.data;
+
+                this.huesped.created_at=fechaFormateadaRegister;
+                this.huesped.updated_at=fechaFormateadaUpdated;
+                this.huesped.fecha_nacimiento=fechaNacimientoFormateada;
             })
         }
     }
@@ -129,7 +148,7 @@ export default {
     font-weight: 100;
     color: #FFF;
     line-height: 150%;
-    text-transform: lowercase;
+    text-transform: uppercase;
     padding: 30px 50px 0;
 }
 
@@ -264,7 +283,16 @@ export default {
     font-size: 16px;
     font-weight: 400;
     font-family: Raleway;
-    text-transform: lowercase;
+    text-transform: capitalize;
+    margin: 5px auto 0;
+    padding-right: 5px
+}
+
+.profile-detail-large-email {
+    color: rgb(160, 158, 157);
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Raleway;
     margin: 5px auto 0;
     padding-right: 5px
 }

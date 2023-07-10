@@ -28,8 +28,8 @@
 
             <BotonesGraficosGerente></BotonesGraficosGerente>
             <div class="col-md-12 w-100 parent-canvas">
-              <GraficoBarras></GraficoBarras>
               <GraficoLinear></GraficoLinear>
+              <GraficoLinear2></GraficoLinear2>
             </div>
           </div>
         </div>
@@ -43,8 +43,9 @@
   import HeaderComponent from "@/components/HeaderComponent.vue";
   import ListSidebarGerente from "@/components/ListSidebarGerente.vue";
   import BotonesGraficosGerente from "@/components/BotonesGraficoGerente.vue"; 
-  import GraficoBarras from "@/components/GraficoBarras";
+ 
   import GraficoLinear from "@/components/GraficoLinear";
+  import GraficoLinear2 from "@/components/GraficoLinear2";
 
   export default {
     name: "HomeRecepView",
@@ -53,7 +54,7 @@
       SidebarComponent,
       ListSidebarGerente,
       HeaderComponent,
-      GraficoBarras,
+      GraficoLinear2,
       GraficoLinear,
       BotonesGraficosGerente,
     },

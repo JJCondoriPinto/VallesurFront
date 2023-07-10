@@ -1012,3 +1012,12 @@ input {
 .wrong {
     border-color: red;
 }
+.label_submit {
+    height: 100%;
+    margin-top: 0.4rem;
+    margin-left: 0.5rem;
+}
+.label_submit1 {
+    height: 100%;
+
+}
