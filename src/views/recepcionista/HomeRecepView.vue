@@ -30,19 +30,19 @@
                 <div class="card card-home-color card-green col-md-12">
                   <p class="card-question">SOLICITUD DE DATOS</p>
                   <div class="card-separator"></div>
-                  <p class="card-fonter" style="text-align:center;">1. Nombre completo </p>
+                  <p class="card-fonter">1. Nombre completo </p>
                   <div class="card-separator"></div>
                   <div class="card-separator"></div>
-                  <p class="card-fonter" style="text-align:center;">2. N° de DNIT</p>
+                  <p class="card-fonter">2. N° de DNIT</p>
                   <div class="card-separator"></div>
                   <div class="card-separator"></div>
-                  <p class="card-fonter" style="text-align:center;">3. cantidad de personas que ingresaran a la habitación </p>
+                  <p class="card-fonter">3. cantidad de personas que ingresaran a la habitación </p>
                   <div class="card-separator"></div>
                   <div class="card-separator"></div>
-                  <p class="card-fonter" style="text-align:center;">4.Hora aproximada de ingreso</p>
+                  <p class="card-fonter">4.Hora aproximada de ingreso</p>
                   <div class="card-separator"></div>
                   <div class="card-separator"></div>
-                  <p class="card-fonter" style="text-align:center;">5. indicar si necesitara la reserva de un espacio en la cochera"</p>
+                  <p class="card-fonter">5. indicar si necesitara la reserva de un espacio en la cochera"</p>
                   <div class="card-separator"></div>
                 </div>
               </li>
@@ -65,7 +65,7 @@
                 <div class="card card-home-color card-red col-md-12">
                   <p class="card-question">IMPORTANTE!: NO VENDER HABITACIONES DOBLES (206 Y 301) A MENOS DE S/180.00</p>
                   <div class="card-separator"></div>
-                  <p class="card-fonter" style="text-align:justify;">se debe indicar al huesped que no debe utilizar ni colocar cosas sobre la cama de 11/2 plzs, de lo contrario se le cobrara la tarifa completa</p>
+                  <p class="card-fonter">se debe indicar al huesped que no debe utilizar ni colocar cosas sobre la cama de 11/2 plzs, de lo contrario se le cobrara la tarifa completa</p>
                   <div class="card-separator"></div>
                 </div>
               </li>

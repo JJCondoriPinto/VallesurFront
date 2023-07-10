@@ -1052,6 +1052,7 @@ li {
 }
 .card .card-fonter {
     color: var(--app-content-main-color);
+    text-align: center;
 }
 .card a {
   text-decoration: none;
