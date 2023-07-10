@@ -13,6 +13,7 @@ import RecepGerenteShowView from '@/views/gerente/recepcionistas/RecepGerenteSho
 import RecepGerenteCreateView from '@/views/gerente/recepcionistas/RecepGerenteCreateView'
 
 
+
 const routes_gerente = [
   {
     path: "",
@@ -59,6 +60,26 @@ const routes_gerente = [
     ],
   },
   {
+    path: "habitaciones",
+    children: [
+      {
+        path: "",
+        name: "gerente-habitaciones",
+        component: HabitGerenteView,
+      },
+      {
+        path: ":id",
+        name: "gerente-habitaciones-show",
+        component: HabitGerenteShowView,
+      },
+      {
+        path: "create",
+        name: "gerente-habitaciones-create",
+        component: HabitGerenteCreateView,
+      },
+    ],
+  },
+  {
     path: "recepcionistas",
     children: [
       {
@@ -78,6 +99,7 @@ const routes_gerente = [
       },
     ],
   },
+
 
   {
     path: "reportes",

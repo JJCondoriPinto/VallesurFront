@@ -22,7 +22,7 @@
             escanearQR(){
               this.$router.push({name:'reservas-scan-qr'});
             }
-        }
+        },
     }
 </script>
 <style>

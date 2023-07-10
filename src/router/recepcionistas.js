@@ -4,6 +4,7 @@ import RecepcionistaHuespedesView from '@/views/recepcionista/huespedes/HuespAdm
 import RecepcionistaReservaGenerateCheckInView from '@/views/recepcionista/reservas/ReservCheckInAdminView.vue';
 import ReservasCreateAuth from '@/views/recepcionista/reservas/ReservCreateAuth.vue';
 import ReservasCreateUser from '@/views/recepcionista/reservas/ReservCreateHuesped.vue';
+
 import ReservasCreate from '@/views/recepcionista/reservas/ReservCreate.vue';
 import ReservasEditarRecepView from '@/views/recepcionista/reservas/ReservEditView.vue';
 import ReportesRecepcionista from '@/views/recepcionista/recepcionista_reportes/ReportesRecepcionista'
@@ -115,6 +116,17 @@ const routes_recepcionista = [
     name: "recepcionista-check",
     component: CheckinView 
   },
+  {
+    path: "checkin-show/:id",
+    name: "checkin-reservas-show",
+    component: CheckinAdminShow
+  },
+  {
+    path: "checkin-editar/:id",
+    name: "recepcionista-editar-checkin",
+    component: CheckinEditView
+  },
+  
   {
     path: "checkin-show/:id",
     name: "checkin-reservas-show",
