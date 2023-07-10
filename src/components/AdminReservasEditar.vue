@@ -4,18 +4,19 @@
             <div class="form">
 
                 <form class="form-updateUser" @submit.prevent="updateReserva">
+                    <input type="hidden" v-model="this.formData._id">
                     <div class="card-group form-group">
                         <label class="form-label label-radio">Fecha Reserva Entrada</label>
-                        <input class="form-input" type="date" v-model=formData.fecha_checkin :min="getFechaActual()"
+                        <input class="form-input" type="date" v-model="this.formData.fecha_checkin" :min="getFechaActual()"
                             required>
                     </div>
                     <div class="card-group form-group">
                         <label class="form-label label-radio">Fecha Reserva Salida</label>
-                        <input class="form-input" type="date" v-model=formData.fecha_checkout :min="getFormattedCheckInDate()" required>
+                        <input class="form-input" type="date" v-model="this.formData.fecha_checkout" :min="getFormattedCheckInDate()" required>
                     </div>
                     <div class="card-group form-group">
                         <label class="form-label label-radio">Acompañantes</label>
-                        <input class="form-input" type="number" v-model=formData.pax_reserva required>
+                        <input class="form-input" type="number" v-model="this.formData.pax_reserva" required>
                     </div>
                     <div class="row">
                         <button class="btn btn-success px-5">Editar</button>
@@ -33,6 +34,7 @@ export default {
     data() {
         return {
             formData: {
+                _id: null,
                 fecha_checkin: '',
                 fecha_checkout: '',
                 pax_reserva: ''
@@ -45,9 +47,9 @@ export default {
     },
     methods: {
         updateReserva(){
-            axios.put('/api/reserva/'+this.id).then((value)=>{
+            axios.put('/api/reserva/',this.formData).then((value)=>{
                 console.log(value);
-                this.$router.push({name:'recepcionista-reservas'});
+                 this.$router.push({name:'recepcionista-reservas'})
             })
         },  
         getFechaActual() {
@@ -71,10 +73,12 @@ export default {
                     id: this.id
                 }
             }).then((value) => {
-                console.log(value.data.data);
+                console.log(value.data.data[0]);
+                this.formData._id = value.data.data[0]._id;
                 this.formData.fecha_checkin = value.data.data[0].datosReserva.fecha_checkin;
                 this.formData.fecha_checkout = value.data.data[0].datosReserva.fecha_checkout;
                 this.formData.pax_reserva = value.data.data[0].datosReserva.pax_reserva;
+                console.log(this.formData);
             })
         },
         getFormattedCheckInDate() {

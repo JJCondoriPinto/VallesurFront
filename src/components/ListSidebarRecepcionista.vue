@@ -56,7 +56,7 @@
         </router-link>
     </li>
     <li :class="{ 'sidebar-list-item': true, 'active': isRouteActive('recepcionista-reportes') }">
-        <router-link :to="{ name: 'recepcionista-reportes' }"> 
+        <router-link :to="{ name: 'recepcionista-reportes' }">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 12v-2a4 4 0 0 0-3-3.87V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8" />
@@ -68,17 +68,6 @@
             </svg>
 
             <span>Reportes</span>
-         </router-link> 
-    </li>
-    <li :class="{ 'sidebar-list-item': true, 'active': isRouteActive('recepcionista-cochera') }">
-        <router-link :to="{ name: 'recepcionista-cochera' }">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 9v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9" />
-                <path d="M9 22V12h6v10M2 10.6L12 2l10 8.6M12 2v6.01" />
-            </svg>
-
-            <span>Cochera</span>
         </router-link>
     </li>
     <li class="sidebar-list-item ">
@@ -101,6 +90,7 @@ export default {
     methods: {
         async logout() {
             await this.$store.dispatch('logout');
+            return this.$router.push('/login');
         },
         isRouteActive(routeName) {
             return this.$route.name === routeName;

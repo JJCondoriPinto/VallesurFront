@@ -35,7 +35,7 @@
               <th>Descripicion Salida</th>
               <th>Nombre A.</th>
               <th>Turno</th>
-              <th>Acciones</th>
+             
             </tr>
           </thead>
         </DataTable>
@@ -106,17 +106,10 @@ export default {
             return fechaFormateada;
           },
         },
+        
         { data: "descripcion_salida" },
         { data: "recepcionista.nombres" },
         { data: "recepcionista.turno" },
-        {
-          data: null,
-          render: function () {
-            return `<td>
-                          <button id="eliminar" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
-                          </td>`;
-          },
-        },
       ],
       botones: [
         {
@@ -147,49 +140,25 @@ export default {
     };
   },
   methods: {
-    getCheckins() {
+    getCheckouts() {
       axios.get("/api/checkout").then((value) => {
         console.log(value);
         this.CheckIn = value.data.data;
       });
     },
-    generateCheckOut(id) {
-      console.log(id);
-      this.$router.push({
-        name: "recepcionista-check-out-generate",
-        params: { id: id },
-      });
+
+    onRowClick(id) {
+      this.$router.push({ name: "checkout-reservas-show", params: { id: id } });
     },
+
   },
 
   mounted() {
-    this.getCheckins();
+    this.getCheckouts();
     this.$nextTick(() => {
       const table = $(".table").DataTable();
-      table.on("click", "#editar", (event) => {
-        event.stopPropagation();
-        const rowData = table.row($(event.currentTarget).closest("tr")).data();
-        console.log(`Editar registro con ID: ${rowData._id}`);
-        this.editarReserva(rowData._id);
-      });
-      table.on("click", "#check_out", (event) => {
-        event.stopPropagation();
-        const rowData = table.row($(event.currentTarget).closest("tr")).data();
-        this.generateCheckOut(rowData._id);
-      });
-      table.on("click", "#eliminar", (event) => {
-        event.stopPropagation();
-        const rowData = table.row($(event.currentTarget).closest("tr")).data();
-        if (confirm("¿Estás seguro de que deseas eliminar este elemento?")) {
-          axios.delete("api/huespedes-delete/" + rowData._id).then((value) => {
-            console.log(value);
-            location.reload();
-          });
-        } else {
-          // El usuario hizo clic en "Cancelar"
-          // No se realiza ninguna acción
-        }
-      });
+      
+
       table.on("click", "tr", (event) => {
         const rowData = table.row(event.currentTarget).data();
         if (rowData != null) {

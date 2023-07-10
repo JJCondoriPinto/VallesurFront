@@ -9,14 +9,16 @@
                 <div class="app-content">
                     <HeaderComponent>
                         <template #title>
-                            Reservas
+                            Editar Checkin
+                        </template>
+                        <template #actions>
                         </template>
                     </HeaderComponent>
-                    <AdminGenerateCheckin :id=this.id>
+                    <AdminCheckinEditar :id=this.id>
 
-                    </AdminGenerateCheckin>
+                    </AdminCheckinEditar>
+
                 </div>
-                
             </div>
         </div>
     </div>
@@ -25,33 +27,25 @@
 import SidebarComponent from '@/components/SidebarComponent.vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import ListSidebarRecepcionista from '@/components/ListSidebarRecepcionista.vue';
-import AdminGenerateCheckin from '@/components/AdminGenerateCheckin.vue';
-const socket = new WebSocket('wss://vallesur.bjrcode.com/websocket.com');
-socket.addEventListener('message', (event) => {
-  const data = event.data;
-  console.log(data);
-  // Procesa los datos recibidos desde el servidor websocket en Vue.js
-});
+import AdminCheckinEditar from "@/components/AdminCheckinEditar";
+
 export default {
-    
+    name: 'CheckinEditarRecepView',
     components: {
         SidebarComponent,
         ListSidebarRecepcionista,
         HeaderComponent,
-        AdminGenerateCheckin
+        AdminCheckinEditar,
+        
     },
     data(){
         return {
             id: this.$route.params.id,
         }
-    },
-    mounted(){
-        console.log(this.$route.params.id);
-    },
-    methods:{
-        sendMessage(){
-            socket.send('Datos enviados desde Vue.js');
-        }
     }
+
 }
 </script>
+<style>
+@import url('@/css/app.css');
+</style>

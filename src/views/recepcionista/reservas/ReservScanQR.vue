@@ -9,14 +9,14 @@
                 <div class="app-content">
                     <HeaderComponent>
                         <template #title>
-                            Reservas
+                            Escanear QR
                         </template>
-                    </HeaderComponent>
-                    <AdminGenerateCheckin :id=this.id>
 
-                    </AdminGenerateCheckin>
+                    </HeaderComponent>
+                    <EscanerQR>
+
+                    </EscanerQR>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -25,33 +25,20 @@
 import SidebarComponent from '@/components/SidebarComponent.vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import ListSidebarRecepcionista from '@/components/ListSidebarRecepcionista.vue';
-import AdminGenerateCheckin from '@/components/AdminGenerateCheckin.vue';
-const socket = new WebSocket('wss://vallesur.bjrcode.com/websocket.com');
-socket.addEventListener('message', (event) => {
-  const data = event.data;
-  console.log(data);
-  // Procesa los datos recibidos desde el servidor websocket en Vue.js
-});
+import EscanerQR from '@/components/ReservaEscanerQR.vue';
+
 export default {
-    
+    name: 'ReservasRecepScan',
     components: {
         SidebarComponent,
         ListSidebarRecepcionista,
         HeaderComponent,
-        AdminGenerateCheckin
+        EscanerQR
     },
-    data(){
-        return {
-            id: this.$route.params.id,
-        }
-    },
-    mounted(){
-        console.log(this.$route.params.id);
-    },
-    methods:{
-        sendMessage(){
-            socket.send('Datos enviados desde Vue.js');
-        }
-    }
+    
+
 }
 </script>
+<style>
+@import url('@/css/app.css');
+</style>
