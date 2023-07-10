@@ -1,9 +1,9 @@
 <template>
     <div class="row">
         <div class="">
-            <div class="table-responsive">
-                <DataTable :data="products" :columns="columns"
-                    class="table table-striped table-bordered display table-hover table-dark" :options="{
+            <div class="table-responsive" >
+                <DataTable :data="products" :columns="columns" id="tabla"
+                    class="tablita" :options="{
                         responsive: true, autoWidth: true, dom: 'Bfrtip', language: {
                             search: 'Buscar...',
                             zeroRecords: 'No hay registros para mostrar',
@@ -44,6 +44,100 @@
     color: white;
     padding-right: 15px;
     margin-top: 50px;
+}
+.tablita {
+    background-color: rgb(35, 43, 72);
+    text-align: center;
+    text-transform: capitalize;
+    border-collapse: collapse;
+    border: 1px solid #000;
+
+}
+.dataTables_filter input {
+  margin-bottom: 20px !important;
+  margin-top: 30px;
+  color: white;
+  background-color: rgb(35, 43, 72);
+  border-color: #000;
+}
+
+.pagination .paginate_button{
+    cursor: pointer;
+    border: 1px solid #000 !important;
+    border: #000 !important;
+} 
+.tablita th {
+    color: #fff;
+    /* Color de texto para los encabezados de columna */
+    font-weight: bold;
+    /* Fuente en negrita para los encabezados de columna */
+}
+
+.tablita td {
+    color: #fff;
+    /* Color de texto para las celdas de datos */
+}
+
+.tablita tr {
+    transition: background-color 0.3s ease;
+    /* Transición de 0.3 segundos con aceleración */
+}
+
+.tablita {
+    border-spacing: 5px;
+    /* Ajusta el valor según el espacio deseado entre las celdas */
+}
+.dataTables_paginate a{
+    background-color: rgb(35, 43, 72) !important;
+    color: rgb(255, 255, 255) !important;
+    border: 1px solid #000 !important;
+    cursor: pointer !important;
+}
+.tablita{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+
+.tablita th,
+.tablita td {
+    padding: 10px;
+    /* Ajusta el valor de padding según sea necesario */
+}
+
+tr {
+    background-color: rgb(30, 30, 62);
+}
+
+.tablita tbody tr:hover {
+    background-color: #130f2b;
+    cursor: pointer;
+}
+.tablita tbody tr td {
+  border-bottom: 1.5px solid rgb(30, 30, 62);
+}
+
+.tablita tbody tr {
+    background-color: #130f2b;
+    cursor: pointer;
+    border-bottom: 1px solid #9e3c3c !important;
+}
+
+.table-responsive {
+    max-height: 500px;
+    color: white;
+    padding-right: 15px;
+    margin-top: 50px;
+
+}
+.tablita tr{
+    border-bottom: 5px solid #9e3c3c !important;
+}
+.btn.boton-acciones{
+    background-color: rgb(35, 43, 72);
+}
+.disponible-container{
+    background-color: rgb(52, 103, 86);
+    border-radius: 30px;
 }
 </style>
 <script>
@@ -94,7 +188,11 @@ export default {
                 { data: 'nro_habitacion' },
                 { data: 'tipo_habitacion' },
                 { data: 'precio' },
-                { data: 'estado' },
+                { data: 'estado' ,render:function(data){
+                    if(data=="Disponible"){
+                        return `<div class="disponible-container">Disponible</div>`
+                    }
+                }},
                 { data: null,render:
                     function(data,type,row){
                         let inicio=row.reservado_desde;
@@ -115,25 +213,25 @@ export default {
                     title: 'Reporte de Huespedes',
                     extend: 'excelHtml5',
                     text: '<i class="fa-solid fa-file-excel" ></i> Excel',
-                    className: 'btn btn-success'
+                    className: 'btn boton-acciones rounded-0'
                 },
                 {
                     title: 'Reporte de Huespedes',
                     extend: 'pdfHtml5',
                     text: '<i class="fa-solid fa-file-pdf" ></i> PDF',
-                    className: 'btn btn-danger'
+                    className: 'btn boton-acciones rounded-0'
                 },
                 {
                     title: 'Reporte de Huespedes',
                     extend: 'print',
                     text: '<i class="fa-solid fa-print" ></i> Imprimir',
-                    className: 'btn btn-dark'
+                    className: 'btn boton-acciones rounded-0'
                 },
                 {
                     title: 'Reporte de Huespedes',
                     extend: 'copy',
                     text: '<i class="fa-solid fa-copy" ></i> Copiar Contenido',
-                    className: 'btn btn-light'
+                    className: 'btn boton-acciones rounded-0'
                 },
 
             ]
@@ -142,7 +240,7 @@ export default {
     mounted() {
         this.getProducts();
         this.$nextTick(() => {
-            const table = $('.table').DataTable();
+            const table = $('#tabla').DataTable();
             table.on('click', 'tr', (event) => {
                 const rowData = table.row(event.currentTarget).data();
                 if (rowData != null) {

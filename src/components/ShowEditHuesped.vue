@@ -54,10 +54,10 @@
                             <input class="form-input" name="correo" v-model="correo" disabled required>
                         </div>
                         <div class="card-group form-group buttons">
-                            <button class="raise btn-green" id="btn-edit" type="submit" @click="showEditRecep">Editar
+                            <button class="btn btn-success" id="btn-edit" type="submit" @click="showEditRecep">Editar
                                 campos</button>
-                            <button class="raise btn-green" id="btn-edit-store" type="submit">Guardar cambios</button>
-                            <button class="raise btn-red" id="btn-edit-cancel" type="submit"
+                            <button class="btn btn-success" id="btn-edit-store" type="submit">Guardar cambios</button>
+                            <button class="btn btn-danger" id="btn-edit-cancel" type="submit"
                                 @click="showEditRecepDisable">Cancelar</button>
                         </div>
                     </div>
@@ -159,10 +159,20 @@ export default {
 </script>
 <style scoped>
 @import url('@/css/app.css');
-
+.form{
+    max-width: 400px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+}
+.form label{
+    max-width: 400px;
+    text-align: left;
+}
 .container-edit {
-    max-height: 500px;
+
     overflow: auto;
+    
 }
 
   /* Estilos para las opciones del combobox */
