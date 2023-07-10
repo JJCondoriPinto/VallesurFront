@@ -13,7 +13,7 @@
                     </div>
                     <div class="card-group form-group">
                         <label class="form-label label-radio">Nro de Documento</label>
-                        <input class="form-input" type="number" placeholder="Identificador" v-model=formData.id required>
+                        <input class="form-input" type="text" placeholder="Identificador" v-model=formData.id required>
                     </div>
                     <div class="row">
                         <button class="btn btn-success px-5">Siguiente</button>
@@ -48,7 +48,12 @@ import axios from 'axios';
             .catch((error) => {
                 console.log(error);
                 this.$emit('mostrar-alerta', 'An example alert with an icon', 'info-fill');
-                this.$router.push({ name:'reservas-create-huesped' });
+                if(this.formData.tipo=="dni"){
+
+                    this.$router.push({ name:'reservas-create-huesped',params:{id:this.formData.id} });
+                }else{
+                    this.$router.push({ name:'reservas-create-huesped',params:{id:"no-auth"} });
+                }
             });
         },
     }

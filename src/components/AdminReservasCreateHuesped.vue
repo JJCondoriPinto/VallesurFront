@@ -43,13 +43,13 @@
                         <div class="card-group form-group">
                             <label>Nacionalidad</label>
                             <select class="form-input" v-model=formData.nacionalidad_huesped>
-                                <option value="Peru">Perú</option>
-                                <option value="Chile">Chile</option>
-                                <option value="Brasil">Brasil</option>
-                                <option value="Argentina">Argentina</option>
-                                <option value="Espana">España</option>
-                                <option value="Bolivia">Bolivia</option>
-                                <option value="Uruguay">Uruguay</option>
+                                <option value="peru">Perú</option>
+                                <option value="chile">Chile</option>
+                                <option value="brasil">Brasil</option>
+                                <option value="argentina">Argentina</option>
+                                <option value="espana">España</option>
+                                <option value="bolivia">Bolivia</option>
+                                <option value="uruguay">Uruguay</option>
                             </select>
                         </div>
                         <div class="card-group form-group">
@@ -83,6 +83,8 @@
 import axios from 'axios';
 
 export default {
+    
+
     data() {
         return {
             alerta: null,
@@ -101,7 +103,26 @@ export default {
             }
         };
     },
+    props: ["id"],
+    mounted(){
+            this.traerDataReniec();
+        },
     methods: {
+        traerDataReniec(){
+
+            if(this.id!="no-auth"){
+                axios.get("/api/dataReniec",{ params:{dni:this.id} }).then(
+                    (value)=>{
+                        this.formData.nombre_huesped=value.data.data.nombres;
+                        this.formData.apellido_huesped=value.data.data.apellido_paterno +" "+value.data.data.apellido_materno;
+                        this.formData.tipo_identificacion_huesped="Dni";
+                        this.formData.identificacion_huesped=value.data.data.numero;
+                    }
+                )
+            }else{
+                console.log(this.id)
+            }
+        },
         crearHuesped(){
             console.log(this.formData);
             axios.post('/api/huesped',this.formData).then(

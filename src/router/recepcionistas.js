@@ -6,19 +6,22 @@ import ReservasCreateAuth from '@/views/recepcionista/reservas/ReservCreateAuth.
 import ReservasCreateUser from '@/views/recepcionista/reservas/ReservCreateHuesped.vue';
 import ReservasCreate from '@/views/recepcionista/reservas/ReservCreate.vue';
 import ReservasEditarRecepView from '@/views/recepcionista/reservas/ReservEditView.vue';
-import CheckinView from '@/views/recepcionista/checkin-checkout/CheckinView';
-import CheckOutView from '@/views/recepcionista/checkin-checkout/CheckoutView';
-import GenerateCheckout from '@/views/recepcionista/checkin-checkout/GenerateCheckout';
-import ReportesRecepcionista from "@/views/recepcionista/recepcionista_reportes/ReportesRecepcionista";
-import ReportesRecepcionistaPrecios from "@/views/recepcionista/recepcionista_reportes/ReportesRecepcionistaPrecios";
-import ReportesRecepcionistaPersonas from "@/views/recepcionista/recepcionista_reportes/ReportesRecepcionistaPersonas";
-import ReservAdminShow from "@/views/recepcionista/reservas/ReservAdminShow";
-import ReservasRecepScan from "@/views/recepcionista/reservas/ReservScanQR";
-import HabitRecepShowView from '@/views/recepcionista/habitaciones/HabitRecepShowView';
-import HabitRecepView from '@/views/recepcionista/habitaciones/HabitRecepView';
-import CheckinAdminShow from "@/views/recepcionista/checkin-checkout/CheckinAdminShow";
-import CheckinEditView from "@/views/recepcionista/checkin-checkout/CheckinEditView";
-import CheckoutAdminShow from "@/views/recepcionista/checkin-checkout/CheckoutAdminShow";
+import ReportesRecepcionista from '@/views/recepcionista/recepcionista_reportes/ReportesRecepcionista'
+import ReportesRecepcionistaPrecios from '@/views/recepcionista/recepcionista_reportes/ReportesRecepcionistaPrecios'
+import ReportesRecepcionistaPersonas from '@/views/recepcionista/recepcionista_reportes/ReportesRecepcionistaPersonas'
+import CheckinView from '@/views/recepcionista/checkin-checkout/CheckinView'
+import CheckoutView from '@/views/recepcionista/checkin-checkout/CheckoutView'
+import GenerateCheckout from '@/views/recepcionista/checkin-checkout/GenerateCheckout'
+import HabitRecepShowView from '@/views/recepcionista/habitaciones/HabitRecepShowView'
+import HabitRecepView from '@/views/recepcionista/habitaciones/HabitRecepView'
+import ReservasRecepScan from '@/views/recepcionista/reservas/ReservScanQR.vue'
+import ReservAdminShow from '@/views/recepcionista/reservas/ReservAdminShow.vue'
+import RecepcionistaReservasHorariosView from '@/views/recepcionista/reservas/ReservHorariosView'
+import RecepcionistaHuespedesShow from '@/views/recepcionista/huespedes/HuespAdminShow'
+import RecepcionistaHuespedesEdit from '@/views/recepcionista/huespedes/HuespAdminEdit'
+import CheckinAdminShow from "@/views/recepcionista/checkin-checkout/CheckinAdminShow"
+import CheckinEditView from "@/views/recepcionista/checkin-checkout/CheckinEditView"
+
 
 const routes_recepcionista = [
   {
@@ -28,10 +31,25 @@ const routes_recepcionista = [
   },
   {
     path: "huespedes",
-    name: "recepcionista-huespedes",
-    component: RecepcionistaHuespedesView
+    children: [
+      {
+        path: "",
+        name: "recepcionista-huespedes",
+        component: RecepcionistaHuespedesView
+      },
+      {
+        path: ":id",
+        name: "recepcionista-huespedes-show",
+        component: RecepcionistaHuespedesShow
+      },
+      {
+        path: "edit/:id",
+        name: "recepcionista-huespedes-edit",
+        component: RecepcionistaHuespedesEdit
+      },
+    ],
   },
-{
+  {
     path: "habitaciones",
     children: [
       {
@@ -52,6 +70,11 @@ const routes_recepcionista = [
     component: RecepcionistaReservasView
   },
   {
+    path: "reservas-horario",
+    name: "recepcionista-reservas-horario",
+    component: RecepcionistaReservasHorariosView
+  },
+  {
     path: "reservas-show/:id",
     name: "recepcionista-reservas-show",
     component: ReservAdminShow
@@ -64,12 +87,13 @@ const routes_recepcionista = [
   {
     path: "reservas-create-1",
     name: "reservas-create-auth",
-    component: ReservasCreateAuth
+    component: ReservasCreateAuth,
+    
   },
   {
-    path: "reservas-create-2",
+    path: "reservas-create-2/:id",
     name: "reservas-create-huesped",
-    component: ReservasCreateUser
+    component: ReservasCreateUser,
   },
   {
     path: "reservas-create-3/:id",
@@ -105,12 +129,7 @@ const routes_recepcionista = [
   {
     path: "checkout",
     name: "recepcionista-check-out",
-    component: CheckOutView
-  },
-  {
-    path: "checkout-show/:id",
-    name: "checkout-reservas-show",
-    component: CheckoutAdminShow
+    component: CheckoutView
   },
   {
     path: "checkout-generate/:id",

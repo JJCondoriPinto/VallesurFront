@@ -14,11 +14,13 @@
           <HeaderComponent>
             <template #title> Habitaciones </template>-++
             <template #actions>
-              <ActionsComponent />
+              <!-- <ActionsComponent /> -->
             </template>
           </HeaderComponent>
-
-          <table class="products-area-wrapper tableView">
+          <tablaHabitaciones>
+            
+          </tablaHabitaciones>
+          <!-- <table class="products-area-wrapper tableView">
             <div class="products-header">
                 <div class="product-cell">
                   Nro habitación
@@ -71,7 +73,7 @@
                 <div class="product-cell stock">Estado</div>
             </div>
 
-            <!-- Aquí la lista de habitaciones -->
+           
             <router-link :to="{ name:'recepcionista-habitaciones-show', params: {id: hab._id} }" class="row-element" v-for="hab in habitaciones" :key="hab._id" :id="hab._id">
               <tbody class="products-row">
                   <td class="product-cell nroHabitacion">
@@ -94,7 +96,7 @@
   
               </tbody>
             </router-link>
-          </table>
+          </table> -->
         </div>
       </div>
     </div>
@@ -105,9 +107,9 @@
 import SidebarComponent from "@/components/SidebarComponent.vue";
 import ListSidebarRecepcionista from "@/components/ListSidebarRecepcionista.vue";
 import HeaderComponent from "@/components/HeaderComponent.vue";
-import ActionsComponent from "@/components/ActionsComponent.vue";
+import tablaHabitaciones from '@/components/AdminHabitacionesTable.vue';
 
-import axios from "axios";
+
 
 export default {
   name: "HabitRecepView",
@@ -116,15 +118,13 @@ export default {
   }),
   created() {
     // Peticion para lista de habitaciones
-    axios.get("api/habitaciones").then((res) => {
-      this.habitaciones = res.data.data;
-    });
+
   },
   components: {
     SidebarComponent,
     ListSidebarRecepcionista,
     HeaderComponent,
-    ActionsComponent,
+    tablaHabitaciones
   },
 };
 </script>

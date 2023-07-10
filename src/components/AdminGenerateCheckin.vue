@@ -192,7 +192,9 @@ export default {
             formData: {
                 id_reserva: '',
                 id_recepcionista: '',
-                paxs: null,
+                paxs: [
+                    
+                ],
                 fecha_ingreso: '',
                 nota_adicionales: '',
             },
@@ -200,9 +202,10 @@ export default {
     },
     props: ['id'],
     mounted() {
+        console.log(this.nro_pax);
         this.loadAnimation();
         this.getReserva();
-        this.socket = io('http://192.168.129.214:3000', { transports: ['websocket'] });
+        this.socket = io('https://api.express.vallesur.bjrcode.com', { transports: ['websocket'] });
 
         this.socket.on('connect', () => {
             console.log('Conexión establecida con el servidor Socket.IO');
@@ -262,6 +265,7 @@ export default {
         addValue(value) {
             this.FotoEcaneada = false;
             this.values.push(value);
+            this.formData.paxs.push(value);
             this.resultadoEscaner = {
                 apellidos: null,
                 nombres: null,
@@ -319,22 +323,24 @@ export default {
                 this.showAlert=false;
                 this.formData.paxs=this.values;
                 console.log(this.formData);
-                /* axios.post('/api/checkin', this.formData).then((value) => {
+                axios.post('/api/checkin', this.formData).then((value) => {
                     console.log(value);
                     this.$router.push({ name: 'recepcionista-reservas' });
-                }) */
+                })
 
             }
         },
         getReserva() {
             axios.get('/api/reserva', {
-                "id": this.id
+                params: {
+                    "id": this.id
+                }
             }).then((value) => {
-                console.log(value.data.data[0]);
-                this.formData.id_reserva = value.data.data[0]._id;
+                console.log(value.data.data);
+                this.formData.id_reserva = value.data.data._id;
                 this.formData.id_recepcionista = this.$store.state.user._id;
-                this.nro_pax = value.data.data[0].datosReserva.pax_reserva;
-                this.nombreHuesped = value.data.data[0].huesped.nombres + " " + value.data.data[0].huesped.apellidos
+                this.nro_pax = value.data.data.datosReserva.pax_reserva;
+                this.nombreHuesped = value.data.data.huesped.nombres + " " + value.data.data.huesped.apellidos
             });
         }
     }

@@ -30,6 +30,7 @@
                 </DataTable>
             </div>
             <div>
+                
                 <Modal :id=this.idSelected>
 
                 </Modal>
@@ -104,7 +105,7 @@ export default {
 
                 },
                 { data: 'datosReserva.tipo_reserva' },
-                { data: 'empresa',render:
+                { data: 'datosReserva.empresa',render:
                     function(data){
                         return data.razon_social==null?'No Aplicó':data.razon_social;
                     }
@@ -170,6 +171,7 @@ export default {
                 event.stopPropagation();
                 const rowData = table.row($(event.currentTarget).closest('tr')).data();
                 this.idSelected=rowData._id;
+                console.log("ID RESERVA: ",rowData._id)
             });
             table.on('select', function (e, dt, type, indexes) {
                 var rowData = table.rows(indexes).data().toArray();

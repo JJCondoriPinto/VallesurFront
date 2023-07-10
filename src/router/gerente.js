@@ -76,7 +76,7 @@ const routes_gerente = [
         name: 'gerente-recepcionistas-create',
         component: RecepGerenteCreateView,
       },
-    ]
+    ],
   },
 
   {

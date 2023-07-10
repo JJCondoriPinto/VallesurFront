@@ -1,5 +1,5 @@
 <template>
-        <div class="html">
+    <div class="html">
         <div class="body-app">
             <div class="app-container">
                 <SidebarComponent>
@@ -12,7 +12,9 @@
                             Huespedes Registrados
                         </template>
                     </HeaderComponent>
-                    <AdminHuespedesHeader></AdminHuespedesHeader>
+                    <ShowData :id=this.id>
+
+</ShowData>
                 </div>
             </div>
         </div>
@@ -22,15 +24,20 @@
     import SidebarComponent from '@/components/SidebarComponent.vue';
     import HeaderComponent from '@/components/HeaderComponent.vue';
     import ListSidebarRecepcionista from '@/components/ListSidebarRecepcionista.vue';
-    import AdminHuespedesHeader from '@/components/AdminHuespedesTable.vue';
-    
+    import ShowData from '@/components/ShowDataHuesped.vue';
     export default{
         name: 'HuespedesRecepView',
+        data(){
+            return {
+
+                id: this.$route.params.id,
+            }
+        },
         components: {
             SidebarComponent,
             ListSidebarRecepcionista,
-            AdminHuespedesHeader,
             HeaderComponent,
+            ShowData
         }
     }
 </script>

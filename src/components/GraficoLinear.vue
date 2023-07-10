@@ -19,7 +19,7 @@ export default {
                             label: 'Cantidad de CheckIns por Año',
                             data: [], 
                             borderColor: 'rgba(54, 162, 235, 1)',
-                            backgroundColor: 'rgba(54, 162, 235, 1)',
+                            
                             fill: true
                         }]
                     },

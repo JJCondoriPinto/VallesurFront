@@ -28,8 +28,8 @@
 
             <BotonesGrafico></BotonesGrafico>
             <div class="col-md-12 w-100 parent-canvas">
-              <GraficoBarras></GraficoBarras>
               <GraficoLinear></GraficoLinear>
+              <GraficoLinear2></GraficoLinear2>
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@
   import HeaderComponent from "@/components/HeaderComponent.vue";
   import ListSidebarRecepcionista from "@/components/ListSidebarRecepcionista.vue";
   import BotonesGrafico from "@/components/BotonesGrafico.vue"; 
-  import GraficoBarras from "@/components/GraficoBarras";
+  import GraficoLinear2 from "@/components/GraficoLinear2";
   import GraficoLinear from "@/components/GraficoLinear";
 
   export default {
@@ -53,7 +53,7 @@
       SidebarComponent,
       ListSidebarRecepcionista,
       HeaderComponent,
-      GraficoBarras,
+      GraficoLinear2,
       GraficoLinear,
       BotonesGrafico,
     },

@@ -27,10 +27,13 @@
                             <label for="nacionalidad">Nacionalidad</label>
                             <select class="form-input" name="nacionalidad" v-model="nacionalidad" disabled required>
                                 <option value="">Seleccionar</option>
-                                <option value="argentina">Argentina</option>
-                                <option value="brasil">Brasil</option>
-                                <option value="chile">Chile</option>
                                 <option value="peru">Perú</option>
+                                <option value="chile">Chile</option>
+                                <option value="brasil">Brasil</option>
+                                <option value="argentina">Argentina</option>
+                                <option value="espana">España</option>
+                                <option value="bolivia">Bolivia</option>
+                                <option value="uruguay">Uruguay</option>
                                 
                             </select>
                         </div>
@@ -143,11 +146,11 @@ export default {
                     "telefono_huesped":this.telefono,
                     "correo_huesped":this.correo
                 };
-            axios.put('api/huespedes-update/'+this.id,params).then(
+            axios.put('api/huespedes/'+this.id,params).then(
                 (value)=>{
                     console.log(value);
                     console.log(params);
-                    this.$router.push({ name: 'gerente-huespedes' });
+                    this.$router.push({ name: 'recepcionista-huespedes' });
                 }
             )
         }

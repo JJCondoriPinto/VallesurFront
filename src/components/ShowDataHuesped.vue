@@ -6,14 +6,15 @@
             </div>
             <div class="profile-subtitle">ID • {{ huesped ? huesped._id : 'Cargando' }}</div>
             <div class="profile-head-info">
-                <router-link :to="{ name: 'gerente-huespedes-edit', params: { id: huesped?huesped._id:1 } }">
+                <router-link :to="{ name: 'recepcionista-huespedes-edit', params: { id: huesped ? huesped._id : 1 } }">
 
                     <button class="btn btn-success">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </button>
 
                 </router-link>
-                <button class="btn btn-danger">
+                
+                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Huespedes">
 
                     <i class="fa-solid fa-trash"></i>
 
@@ -26,7 +27,8 @@
                     <div class="profile-details">
                         <div class="profile-detail">
                             <div class="profile-detail-small">Nombre Completo</div>
-                            <div class="profile-detail-large">{{ huesped ? huesped.nombres + " " + huesped.apellidos : 'Cargando' }}
+                            <div class="profile-detail-large">{{ huesped ? huesped.nombres + " " + huesped.apellidos :
+                                'Cargando' }}
                             </div>
                         </div>
                         <div class="profile-detail">
@@ -78,12 +80,16 @@
                     </div>
                 </div>
             </div>
+            <Modal :id=id>
+
+            </Modal>
         </div>
 
     </div>
 </template>
 <script>
 import axios from 'axios';
+import Modal from '@/components/ModalConfirmarEliminarHuesped.vue';
 export default {
     data() {
         return {
@@ -93,6 +99,9 @@ export default {
     props: ['id'],
     mounted() {
         this.getUser();
+    },
+    components:{
+        Modal
     },
     methods: {
         getUser() {
@@ -193,7 +202,7 @@ export default {
 }
 
 .profile-head-info button {
-  margin-right: 20px;
+    margin-right: 20px;
 }
 
 .profile-head-info span,
@@ -407,4 +416,5 @@ export default {
 
 .profile-awards br {
     display: none;
-}</style>
+}
+</style>

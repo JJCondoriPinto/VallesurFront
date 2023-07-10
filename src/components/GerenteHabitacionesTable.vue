@@ -1,0 +1,174 @@
+<template>
+    <div class="row">
+        <div class="">
+            <div class="table-responsive">
+                <DataTable :data="products" :columns="columns"
+                    class="table table-striped table-bordered display table-hover table-dark" :options="{
+                        responsive: true, autoWidth: true, dom: 'Bfrtip', language: {
+                            search: 'Buscar...',
+                            zeroRecords: 'No hay registros para mostrar',
+                            info: 'Mostrando del _START_ a _END_ de _TOTAL_ registros',
+                            infoFiltered: '(Filtrados de _MAX_ registros.)',
+                            paginate: { first: 'Primero', previous: 'Anterior', next: 'Siguiente', last: 'Último' }
+                        }, buttons: botones
+                    }">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>#</th>
+                            <th>Nro de Habitacion</th>
+                            <th>Tipo de Habitacion</th>  
+                            <th>Precio</th>
+                            <th>Estado</th>
+                            <th>Tiempo Reservado</th>
+                        </tr>
+                    </thead>
+                </DataTable>
+                <ModalEliminar :id="selectedID">
+                    
+                </ModalEliminar>
+                <ModalInfo :title="titleModal" :body="bodyModal">
+
+                </ModalInfo>
+                <button hidden data-bs-toggle="modal" data-bs-target="#ModalInfo" id="ModalInfoAbrir"></button>
+            </div>
+        </div>
+    </div>
+</template>
+<style >
+@import url('@/css/app.css');
+@import 'datatables.net-bs5';
+
+.table-responsive {
+    max-height: 500px;
+    color: white;
+    padding-right: 15px;
+    margin-top: 50px;
+}
+</style>
+<script>
+import axios from 'axios';
+import DataTable from 'datatables.net-vue3';
+import DataTableLib from 'datatables.net-vue3';
+import Buttons from 'datatables.net-buttons-bs5';
+import ButtonsHtml5 from 'datatables.net-buttons/js/buttons.html5';
+import print from 'datatables.net-buttons/js/buttons.print';
+import pdfmake from 'pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import 'datatables.net-responsive-bs5';
+import JsZip from 'jszip';
+import $ from 'jquery';
+import ModalInfo from '@/components/ModalInfo.vue';
+import ModalEliminar from '@/components/ModalConfirmarEliminarHuesped.vue';
+
+
+pdfmake.vfs = pdfFonts.pdfMake.vfs;
+
+window.JSZip = JsZip;
+DataTable.use(DataTableLib);
+DataTable.use(pdfmake);
+DataTable.use(ButtonsHtml5);
+DataTable.use(print);
+DataTable.use(Buttons)
+
+export default {
+    components: {
+        DataTable,
+        ModalInfo,
+        ModalEliminar,
+    },
+    data() {
+        return {
+            titleModal:'Atención',
+            bodyModal:'',
+            selectedID:null,
+            products: null,
+            columns: [
+                {
+                    data: '_id',
+                    visible: false
+                },
+                {
+                    data: null, render: function (data, type, row, meta) { return `${meta.row + 1}` }
+                },
+                { data: 'nro_habitacion' },
+                { data: 'tipo_habitacion' },
+                { data: 'precio' },
+                { data: 'estado' },
+                { data: null,render:
+                    function(data,type,row){
+                        let inicio=row.reservado_desde;
+                        let fin=row.reservado_hasta;
+                        if(inicio!=null && fin!=null && inicio!="" && fin !=""){
+
+                            return `${inicio} hasta ${fin}`
+                        }else{
+                            return `No disponible`
+                        }
+                        //return `<button @click='imprimir(${row})'>Printear</button>`
+                    }
+                },
+
+            ],
+            botones: [
+                {
+                    title: 'Reporte de Huespedes',
+                    extend: 'excelHtml5',
+                    text: '<i class="fa-solid fa-file-excel" ></i> Excel',
+                    className: 'btn btn-success'
+                },
+                {
+                    title: 'Reporte de Huespedes',
+                    extend: 'pdfHtml5',
+                    text: '<i class="fa-solid fa-file-pdf" ></i> PDF',
+                    className: 'btn btn-danger'
+                },
+                {
+                    title: 'Reporte de Huespedes',
+                    extend: 'print',
+                    text: '<i class="fa-solid fa-print" ></i> Imprimir',
+                    className: 'btn btn-dark'
+                },
+                {
+                    title: 'Reporte de Huespedes',
+                    extend: 'copy',
+                    text: '<i class="fa-solid fa-copy" ></i> Copiar Contenido',
+                    className: 'btn btn-light'
+                },
+
+            ]
+        }
+    },
+    mounted() {
+        this.getProducts();
+        this.$nextTick(() => {
+            const table = $('.table').DataTable();
+            table.on('click', 'tr', (event) => {
+                const rowData = table.row(event.currentTarget).data();
+                if (rowData != null) {
+                    console.log(rowData);
+                    this.onRowClick(rowData._id);
+                }
+            });
+        });
+    },
+    methods: {
+        imprimir(data){
+            console.log(data);
+        },
+        getProducts() {
+            axios.get("api/habitaciones").then(
+                response => (
+                    console.log(response),
+                    this.products = response.data.data
+                )
+            );
+        },
+
+        onRowClick(id) {
+            this.$router.push({ name: 'gerente-habitaciones-show', params: { id: id } });
+        }
+    }
+}
+
+</script>

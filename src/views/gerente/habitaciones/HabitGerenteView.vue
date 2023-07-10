@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
   function deleteHabit(id) {
     axios.delete('api/habitaciones', {params: {id:id}})
     .then(res => {
@@ -10,7 +10,7 @@
       console.log(err);
     })
   }
-</script>
+</script> -->
 
 <template>
   <div class="html">
@@ -24,7 +24,7 @@
           <HeaderComponent>
             <template #title> Habitaciones </template>-++
             <template #actions>
-              <ActionsComponent />
+
             </template>
             <template #button-insert>
               <router-link :to="{ name: 'gerente-habitaciones-create' }">
@@ -34,8 +34,10 @@
               </router-link>
             </template>
           </HeaderComponent>
+          <TablaHabitaciones>
 
-          <table class="products-area-wrapper tableView">
+          </TablaHabitaciones>
+          <!-- <table class="products-area-wrapper tableView">
             <div class="products-header">
                 <div class="product-cell">
                   Nro habitación
@@ -89,7 +91,7 @@
                 <div class="product-cell price">Accion</div>
             </div>
 
-            <!-- Aquí la lista de habitaciones -->
+
             <router-link :to="{ name:'gerente-habitaciones-show', params: {id: hab._id} }" class="row-element" v-for="hab in habitaciones" :key="hab._id" :id="hab._id">
               <tbody class="products-row">
                   <td class="product-cell nroHabitacion">
@@ -117,7 +119,7 @@
                   </td>
               </tbody>
             </router-link>
-          </table>
+          </table> -->
         </div>
       </div>
     </div>
@@ -128,7 +130,7 @@
 import SidebarComponent from "@/components/SidebarComponent.vue";
 import ListSidebarGerente from "@/components/ListSidebarGerente.vue";
 import HeaderComponent from "@/components/HeaderComponent.vue";
-import ActionsComponent from "@/components/ActionsComponent.vue";
+import TablaHabitaciones from '@/components/GerenteHabitacionesTable.vue';
 
 import axios from "axios";
 
@@ -147,7 +149,7 @@ export default {
     SidebarComponent,
     ListSidebarGerente,
     HeaderComponent,
-    ActionsComponent,
+    TablaHabitaciones
   },
 };
 </script>

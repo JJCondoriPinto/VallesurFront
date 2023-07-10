@@ -60,8 +60,8 @@
                })
                .then(function(data) {
                data.forEach(element => {
-                   myChart3.data['labels'].push(element.nombre_empresa)
-                   myChart3.data['datasets'][0].data.push(element.cantidad_personas)
+                   myChart3.data['labels'].push(element.nro_piso)
+                   myChart3.data['datasets'][0].data.push(element.maxPrecio)
                    myChart3.update()
                });
                

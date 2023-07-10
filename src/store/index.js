@@ -3,6 +3,7 @@ import axios from 'axios'
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.VUE_APP_API_URL;
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 export default createStore({
   state: { 
