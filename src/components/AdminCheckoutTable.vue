@@ -106,6 +106,7 @@ export default {
             return fechaFormateada;
           },
         },
+        
         { data: "descripcion_salida" },
         { data: "recepcionista.nombres" },
         { data: "recepcionista.turno" },

@@ -10,7 +10,7 @@
                             info: 'Mostrando del _START_ a _END_ de _TOTAL_ registros',
                             infoFiltered: '(Filtrados de _MAX_ registros.)',
                             paginate: { first: 'Primero', previous: 'Anterior', next: 'Siguiente', last: 'Último' }
-                        }, buttons: botones
+                        }, buttons: botones, select:true
                     }">
                     <thead>
                         <tr>
@@ -29,9 +29,17 @@
                     </thead>
                 </DataTable>
             </div>
+            <div>
+                <Modal :id=this.idSelected>
+
+                </Modal>
+            </div>
         </div>
     </div>
 </template>
+<style>
+
+</style>
 <script>
 import axios from 'axios';
 import DataTable from 'datatables.net-vue3';
@@ -41,9 +49,11 @@ import ButtonsHtml5 from 'datatables.net-buttons/js/buttons.html5';
 import print from 'datatables.net-buttons/js/buttons.print';
 import pdfmake from 'pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import 'datatables.net-select';
 import 'datatables.net-responsive-bs5';
 import JsZip from 'jszip';
 import $ from 'jquery';
+import Modal from '@/components/ModalConfirmar.vue';
 
 
 pdfmake.vfs = pdfFonts.pdfMake.vfs;
@@ -57,10 +67,11 @@ DataTable.use(Buttons);
 export default {
     components: {
         DataTable,
-
+        Modal
     },
     data() {
         return {
+            idSelected:null,
             reservas: null,
             columns: [
                 {
@@ -77,18 +88,20 @@ export default {
                 {
                     data: 'datosReserva.fecha_checkin',
                     render: function (data) {
-                        // Crear un objeto Date a partir del valor de la celda
-                        const date = new Date(data);
-                        // Formatear la fecha utilizando el método toLocaleDateString
-                        const formattedDate = date.toLocaleDateString('es-PE', {
+                        const dateParts = data.split('-');
+                        const year = parseInt(dateParts[0]);
+                        const month = parseInt(dateParts[1]) - 1;
+                        const day = parseInt(dateParts[2]);
+
+                        const formattedDate = new Date(year, month, day).toLocaleDateString('es-PE', {
                             year: 'numeric',
                             month: 'long',
                             day: 'numeric'
                         });
 
-                        // Devolver la fecha formateada
                         return formattedDate;
                     }
+
                 },
                 { data: 'datosReserva.tipo_reserva' },
                 { data: 'empresa',render:
@@ -102,9 +115,9 @@ export default {
                         return `<td>
                         <button id="check_in" class="btn btn-sm btn-primary"><i class="fa-solid fa-circle-right"></i></button>
                         <button id="editar" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button id="eliminar" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
                         </td>`;
                     }
+                    /* <button id="eliminar" data-bs-toggle="modal" data-bs-target="#Habitaciones" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button> */
                 },
             ],
             botones: [
@@ -137,6 +150,7 @@ export default {
         }
     },
     mounted() {
+        const vueComponent = this;
         this.getReservas();
         this.$nextTick(() => {
             const table = $('.table').DataTable();
@@ -155,29 +169,21 @@ export default {
             table.on('click', '#eliminar', (event) => {
                 event.stopPropagation();
                 const rowData = table.row($(event.currentTarget).closest('tr')).data();
-                if (confirm('¿Estás seguro de que deseas eliminar este elemento?')) {
-                    axios.delete('api/huespedes-delete/' + rowData._id).then((value) => {
-                        console.log(value);
-                        location.reload();
-                    })
-                } else {
-                    // El usuario hizo clic en "Cancelar"
-                    // No se realiza ninguna acción
-                }
+                this.idSelected=rowData._id;
             });
-            table.on('click', 'tr', (event) => {
-                const rowData = table.row(event.currentTarget).data();
-                if (rowData != null) {
+            table.on('select', function (e, dt, type, indexes) {
+                var rowData = table.rows(indexes).data().toArray();
 
-                    console.log(rowData);
-                    this.onRowClick(rowData._id);
-                }
-            });
+                console.log(rowData[0]);
+                vueComponent.$router.push({name:'recepcionista-reservas-show',params:{id:rowData[0]._id}});
+            })
+            
         });
     },
     methods: {
-        editarReserva(id){
-            this.$router.push({name:'recepcionista-editar-reservas',params:{id:id}});
+        
+        editarReserva(id) {
+            this.$router.push({ name: 'recepcionista-editar-reservas', params: { id: id } });
         },
         generateCheckIn(id) {
             this.$router.push({ name: 'recepcionista-generate-checkin', params: { id: id } });
@@ -188,10 +194,11 @@ export default {
                     console.log(response),
                     this.reservas = response.data.data
                 )
-            ).catch(
-                (error) => {console.log(error)}
-            )
-            
+            ).catch((error)=>{
+                console.log(error);
+
+            })
+            ;
         },
         onRowClick(id) {
             this.$router.push({ name: 'gerente-huespedes-show', params: { id: id } });

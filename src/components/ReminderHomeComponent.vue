@@ -1,0 +1,85 @@
+<template>
+    <div class="card-remind w-100">
+        <div class="card">
+            <div class="card-header">
+                Recordatorios
+            </div>
+            <div class="card-body">
+                <div class="reminds gap-1">
+                    <div
+                      class="remind alert alert-warning alert-dismissible fade show"
+                      role="alert"
+                      v-for="remind in reminds" :key="remind._id"
+                    >
+                      <strong>{{remind.titulo}}</strong> <br />
+                      <p>{{remind.descripcion}}</p>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"
+                        v-on:click="deleteRemind(remind._id)"
+                      ></button>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="newRemind" tabindex="-1" aria-labelledby="newRemindLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="newRemindLabel">Nuevo recordatorio</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="remind-name" class="col-form-label">Titulo:</label>
+            <input type="text" class="form-control" id="remind-name">
+          </div>
+          <div class="mb-3">
+            <label for="description-text" class="col-form-label">Description:</label>
+            <textarea class="form-control" id="description-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Generar recordatorio</button>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+<script>
+
+    import axios from 'axios'
+
+    export default {
+        name: 'RemindersHomeComponent',
+        data() {
+            return {
+                reminds: []
+            }
+        },
+        created() {
+            axios.get("api/home/remind")
+            .then(res => {
+                this.reminds = res.data.data;
+            })
+        },
+        methods: {
+            addRemind() {
+                this.reminds.push({
+                    titulo: "",
+                    descripcion: ""
+                });
+            },
+            deleteRemind(id) {
+                axios.delete(`api/home/remind/${id}`);
+            }
+        }
+    }
+</script>
