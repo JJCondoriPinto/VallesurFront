@@ -6,7 +6,7 @@
   
   <script>
   import Chart from "chart.js/auto";
-  
+  import axios from 'axios';
   export default {
       mounted() {
        console.log('Componente mounted.')
@@ -33,15 +33,8 @@
                    }
                })
                var element;
-               let url = 'http://127.0.0.1:8000/api/grafico_linear_2'
-               fetch(url)
-               .then(function(response) {
-                   if (response.ok) {
-                   return response.json();
-                   } else {
-                   throw new Error('Error en la petición. Código de estado:', response.status);
-                   }
-               })
+               let url = 'api/grafico_linear_2'
+               axios.get(url)
                .then(function(data) {
                data.forEach(element => {
                    myChart7.data['labels'].push(element.año)
