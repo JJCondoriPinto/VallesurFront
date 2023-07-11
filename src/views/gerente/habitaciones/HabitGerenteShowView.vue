@@ -167,7 +167,12 @@
   };
 </script>
   
-<style>
+<style scoped>
   @import url("@/css/app.css");
+
+  .form-parent .form{
+    max-width: none !important;
+    align-items: start;
+  }
 </style>
   

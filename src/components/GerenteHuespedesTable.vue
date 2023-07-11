@@ -23,7 +23,7 @@
                             <th>Sexo</th>
                             <th>Nacionalidad</th>
                             <th>Telefono</th>
-                            <th>Acciones</th>
+                            
                         </tr>
                     </thead>
                 </DataTable>
@@ -86,14 +86,6 @@ export default {
                 { data: 'sexo' },
                 { data: 'nacionalidad' },
                 { data: 'telefono' },
-                {
-                    data: null, render: function () {
-                        return `<td>
-                        <button id="editar" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button id="eliminar" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
-                        </td>`;
-                    }
-                },
             ],
             botones: [
                 {

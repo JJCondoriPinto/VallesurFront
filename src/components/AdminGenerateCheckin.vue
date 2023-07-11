@@ -237,7 +237,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
 .form-group {
     display: flex;
     flex-direction: column;
