@@ -188,11 +188,7 @@ export default {
                 { data: 'nro_habitacion' },
                 { data: 'tipo_habitacion' },
                 { data: 'precio' },
-                { data: 'estado' ,render:function(data){
-                    if(data=="Disponible"){
-                        return `<div class="disponible-container">Disponible</div>`
-                    }
-                }},
+                { data: 'estado'},
                 { data: null,render:
                     function(data,type,row){
                         let inicio=row.reservado_desde;
