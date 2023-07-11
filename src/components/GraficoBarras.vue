@@ -51,7 +51,7 @@
              let url = 'api/grafico_barras_2'
              axios.get(url)
              .then(function(data) {
-             data.forEach(element => {
+             data.data.forEach(element => {
                  myChart.data['labels'].push(element.tipo)
                  myChart.data['datasets'][0].data.push(element.costoPromedio)
                  myChart.update()

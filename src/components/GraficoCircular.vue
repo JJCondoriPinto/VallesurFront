@@ -51,7 +51,7 @@
              let url = 'api/grafico_circular_1'
              axios.get(url)
              .then(function(data) {
-             data.forEach(element => {
+             data.data.forEach(element => {
                  myChart4.data['labels'].push(element.turno)
                  myChart4.data['datasets'][0].data.push(element.count)
                  myChart4.update()

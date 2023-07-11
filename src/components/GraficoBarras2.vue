@@ -51,7 +51,7 @@
              let url = 'api/graficos_barras_1'
              axios.get(url)
              .then(function(data) {
-             data.forEach(element => {
+             data.data.forEach(element => {
                  myChart5.data['labels'].push(element.nacionalidad)
                  myChart5.data['datasets'][0].data.push(element.count)
                  myChart5.update()

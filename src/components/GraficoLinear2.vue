@@ -36,7 +36,7 @@
                let url = 'api/grafico_linear_2'
                axios.get(url)
                .then(function(data) {
-               data.forEach(element => {
+               data.data.forEach(element => {
                    myChart7.data['labels'].push(element.año)
                    myChart7.data['datasets'][0].data.push(element.count)
                    myChart7.update()

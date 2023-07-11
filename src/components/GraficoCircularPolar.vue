@@ -52,7 +52,7 @@
                let url = 'api/grafico_circular_polar'
                axios.get(url)
                .then(function(data) {
-               data.forEach(element => {
+               data.data.forEach(element => {
                    myChart3.data['labels'].push(element.nro_piso)
                    myChart3.data['datasets'][0].data.push(element.maxPrecio)
                    myChart3.update()
