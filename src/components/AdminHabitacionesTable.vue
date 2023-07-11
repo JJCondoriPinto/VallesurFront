@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="">
-            <div class="table-responsive" >
+            <div class="table-container" >
                 <DataTable :data="products" :columns="columns" id="tabla"
                     class="tablita" :options="{
                         responsive: true, autoWidth: true, dom: 'Bfrtip', language: {
@@ -46,7 +46,7 @@
     margin-top: 50px;
 }
 .tablita {
-    background-color: rgb(35, 43, 72);
+    background-color: var(--app-bg);
     text-align: center;
     text-transform: capitalize;
     border-collapse: collapse;

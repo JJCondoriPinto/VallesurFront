@@ -1,31 +1,31 @@
 <template>
     <div class="row">
-        <div class="">
-            <div class="table-responsive" >
-                <DataTable :data="products" :columns="columns" id="tabla"
-                    class="tablita" :options="{
-                        responsive: true, autoWidth: true, dom: 'Bfrtip', language: {
-                            search: 'Buscar...',
-                            zeroRecords: 'No hay registros para mostrar',
-                            info: 'Mostrando del _START_ a _END_ de _TOTAL_ registros',
-                            infoFiltered: '(Filtrados de _MAX_ registros.)',
-                            paginate: { first: 'Primero', previous: 'Anterior', next: 'Siguiente', last: 'Último' }
-                        }, buttons: botones
-                    }">
+        <div class="table-container">
+            <div >
+                <DataTable :data="products" :columns="columns" id="tabla" class="tablita" :options="{
+                    responsive: true, autoWidth: true, dom: 'Bfrtip', language: {
+                        search: 'Buscar...',
+                        zeroRecords: 'No hay registros para mostrar',
+                        info: 'Mostrando del _START_ a _END_ de _TOTAL_ registros',
+                        infoFiltered: '(Filtrados de _MAX_ registros.)',
+                        paginate: { first: 'Primero', previous: 'Anterior', next: 'Siguiente', last: 'Último' }
+                    }, buttons: botones
+                }">
                     <thead>
                         <tr>
                             <th>id</th>
                             <th>#</th>
                             <th>Identificación</th>
-                            <th>Nombres</th>  
+                            <th>Nombres</th>
                             <th>Apellidos</th>
                             <th>Turno</th>
                             <th>Telefono</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                 </DataTable>
                 <ModalEliminar :id="selectedID">
-                    
+
                 </ModalEliminar>
                 <ModalInfo :title="titleModal" :body="bodyModal">
 
@@ -35,109 +35,14 @@
         </div>
     </div>
 </template>
-<style >
+<style>
 @import url('@/css/app.css');
 @import 'datatables.net-bs5';
 
-.table-responsive {
-    max-height: 500px;
-    color: white;
-    padding-right: 15px;
-    margin-top: 50px;
-}
-.tablita {
-    background-color: rgb(35, 43, 72);
-    text-align: center;
-    text-transform: capitalize;
-    border-collapse: collapse;
-    border: 1px solid #000;
-
-}
-.dataTables_filter input {
-  margin-bottom: 20px !important;
-  margin-top: 30px;
-  color: white;
-  background-color: rgb(35, 43, 72);
-  border-color: #000;
-}
-
-.pagination .paginate_button{
-    cursor: pointer;
-    border: 1px solid #000 !important;
-    border: #000 !important;
-} 
-.tablita th {
+.table-container{
     color: #fff;
-    /* Color de texto para los encabezados de columna */
-    font-weight: bold;
-    /* Fuente en negrita para los encabezados de columna */
-}
-
-.tablita td {
-    color: #fff;
-    /* Color de texto para las celdas de datos */
-}
-
-.tablita tr {
-    transition: background-color 0.3s ease;
-    /* Transición de 0.3 segundos con aceleración */
-}
-
-.tablita {
-    border-spacing: 5px;
-    /* Ajusta el valor según el espacio deseado entre las celdas */
-}
-.dataTables_paginate a{
-    background-color: rgb(35, 43, 72) !important;
-    color: rgb(255, 255, 255) !important;
-    border: 1px solid #000 !important;
-    cursor: pointer !important;
-}
-.tablita{
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-
-.tablita th,
-.tablita td {
-    padding: 10px;
-    /* Ajusta el valor de padding según sea necesario */
-}
-
-tr {
-    background-color: rgb(30, 30, 62);
-}
-
-.tablita tbody tr:hover {
-    background-color: #130f2b;
-    cursor: pointer;
-}
-.tablita tbody tr td {
-  border-bottom: 1.5px solid rgb(30, 30, 62);
-}
-
-.tablita tbody tr {
-    background-color: #130f2b;
-    cursor: pointer;
-    border-bottom: 1px solid #9e3c3c !important;
-}
-
-.table-responsive {
-    max-height: 500px;
-    color: white;
-    padding-right: 15px;
     margin-top: 50px;
-
-}
-.tablita tr{
-    border-bottom: 5px solid #9e3c3c !important;
-}
-.btn.boton-acciones{
-    background-color: rgb(35, 43, 72);
-}
-.disponible-container{
-    background-color: rgb(52, 103, 86);
-    border-radius: 30px;
+    margin-bottom: 40px;
 }
 </style>
 <script>
@@ -173,9 +78,9 @@ export default {
     },
     data() {
         return {
-            titleModal:'Atención',
-            bodyModal:'',
-            selectedID:null,
+            titleModal: 'Atención',
+            bodyModal: '',
+            selectedID: null,
             products: null,
             columns: [
                 {
@@ -189,8 +94,15 @@ export default {
                 { data: 'nombres' },
                 { data: 'apellidos' },
                 { data: 'turno' },
-                { data: 'telefono',}
-                
+                { data: 'telefono', },
+                {
+                    data: null, render: function () {
+
+                        return `<button id="eliminar" class="btn btn-danger">
+                      Eliminar
+                    </button>`
+                    }
+                }
 
             ],
             botones: [
@@ -226,6 +138,12 @@ export default {
         this.getProducts();
         this.$nextTick(() => {
             const table = $('#tabla').DataTable();
+            table.on('click', '#eliminar', (event) => {
+                event.stopPropagation();
+                const rowData = table.row($(event.currentTarget).closest('tr')).data();
+                console.log(rowData);
+                this.deleteRecep(rowData._id);
+            });
             table.on('click', 'tr', (event) => {
                 const rowData = table.row(event.currentTarget).data();
                 if (rowData != null) {
@@ -236,7 +154,20 @@ export default {
         });
     },
     methods: {
-        imprimir(data){
+        deleteRecep(id) {
+            if (confirm('¿Está seguro que desea eliminar a este recepcionista?')) {
+                axios.delete('api/recepcionistas', { params: { id: id } })
+                    .then(res => {
+                        if (res.status == 200) {
+                            document.getElementById(id).remove();
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            }
+        },
+        imprimir(data) {
             console.log(data);
         },
         getProducts() {
@@ -249,7 +180,7 @@ export default {
         },
 
         onRowClick(id) {
-            this.$router.push({ name: 'recepcionista-habitaciones-show', params: { id: id } });
+            this.$router.push({ name: 'gerente-recepcionistas-show', params: { id: id } });
         }
     }
 }
