@@ -1,8 +1,8 @@
 <template>
     <div class="row">
-        <div class="">
-            <div class="table-container">
-                <DataTable id="tabla" :data="products" :columns="columns" class="tablita display" :options="{
+        <div class="table-container">
+            <div >
+                <DataTable :data="products" :columns="columns" id="tabla" class="tablita" :options="{
                     responsive: true, autoWidth: true, dom: 'Bfrtip', language: {
                         search: 'Buscar...',
                         zeroRecords: 'No hay registros para mostrar',
@@ -10,17 +10,15 @@
                         infoFiltered: '(Filtrados de _MAX_ registros.)',
                         paginate: { first: 'Primero', previous: 'Anterior', next: 'Siguiente', last: 'Último' }
                     }, buttons: botones
-                }" :columnDefs="columnDefs">
+                }">
                     <thead>
                         <tr>
                             <th>id</th>
                             <th>#</th>
-                            <th>Tipo de Identificación</th>
-                            <th>Nro de Identificación</th>
+                            <th>Identificación</th>
                             <th>Nombres</th>
                             <th>Apellidos</th>
-                            <th>Sexo</th>
-                            <th>Nacionalidad</th>
+                            <th>Turno</th>
                             <th>Telefono</th>
                             <th>Acciones</th>
                         </tr>
@@ -37,10 +35,15 @@
         </div>
     </div>
 </template>
-<style >
+<style>
 @import url('@/css/app.css');
 @import 'datatables.net-bs5';
 
+.table-container{
+    color: #fff;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
 </style>
 <script>
 import axios from 'axios';
@@ -79,12 +82,6 @@ export default {
             bodyModal: '',
             selectedID: null,
             products: null,
-            columnDefs: [
-                {
-                    targets: -1,
-                    className: 'dt-body-right'
-                }
-            ],
             columns: [
                 {
                     data: '_id',
@@ -93,21 +90,20 @@ export default {
                 {
                     data: null, render: function (data, type, row, meta) { return `${meta.row + 1}` }
                 },
-                { data: 'identificacion.tipo_identificacion' },
-                { data: 'identificacion.identificacion_huesped' },
+                { data: 'dni' },
                 { data: 'nombres' },
                 { data: 'apellidos' },
-                { data: 'sexo' },
-                { data: 'nacionalidad' },
-                { data: 'telefono' },
+                { data: 'turno' },
+                { data: 'telefono', },
                 {
                     data: null, render: function () {
-                        return `<td>
-                        <button id="editar" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button id="eliminar" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#Huespedes"><i class="fa-solid fa-trash"></i></button>
-                        </td>`;
+
+                        return `<button id="eliminar" class="btn btn-danger">
+                      Eliminar
+                    </button>`
                     }
-                },
+                }
+
             ],
             botones: [
                 {
@@ -142,34 +138,15 @@ export default {
         this.getProducts();
         this.$nextTick(() => {
             const table = $('#tabla').DataTable();
-            table.on('click', '#editar', (event) => {
-                event.stopPropagation();
-                const rowData = table.row($(event.currentTarget).closest('tr')).data();
-                console.log(`Editar registro con ID: ${rowData._id}`);
-                this.editarHuesped(rowData._id);
-
-            });
             table.on('click', '#eliminar', (event) => {
                 event.stopPropagation();
                 const rowData = table.row($(event.currentTarget).closest('tr')).data();
-                this.selectedID = rowData._id
-                /*                 if (confirm('¿Estás seguro de que deseas eliminar este elemento?')) {
-                                    axios.delete('api/huespedes',{params:{id:rowData._id}}).then((value) => {
-                                        console.log(value);
-                                        this.bodyModal=value.data.message;
-                                        this.abrirModalInformativo();
-                                        //location.reload();
-                                    })
-                                } else {
-                                    // El usuario hizo clic en "Cancelar"
-                                    // No se realiza ninguna acción
-                                } */
+                console.log(rowData);
+                this.deleteRecep(rowData._id);
             });
             table.on('click', 'tr', (event) => {
                 const rowData = table.row(event.currentTarget).data();
-                console.log("hola");
                 if (rowData != null) {
-
                     console.log(rowData);
                     this.onRowClick(rowData._id);
                 }
@@ -177,22 +154,33 @@ export default {
         });
     },
     methods: {
-        abrirModalInformativo() {
-            $('#ModalInfoAbrir').click();
+        deleteRecep(id) {
+            if (confirm('¿Está seguro que desea eliminar a este recepcionista?')) {
+                axios.delete('api/recepcionistas', { params: { id: id } })
+                    .then(res => {
+                        if (res.status == 200) {
+                            document.getElementById(id).remove();
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            }
         },
-        editarHuesped(id) {
-            this.$router.push({ name: 'recepcionista-huespedes-edit', params: { id: id } });
+        imprimir(data) {
+            console.log(data);
         },
         getProducts() {
-            axios.get("/api/huespedes").then(
+            axios.get("api/recepcionistas").then(
                 response => (
                     console.log(response),
                     this.products = response.data.data
                 )
             );
         },
+
         onRowClick(id) {
-            this.$router.push({ name: 'recepcionista-huespedes-show', params: { id: id } });
+            this.$router.push({ name: 'gerente-recepcionistas-show', params: { id: id } });
         }
     }
 }
